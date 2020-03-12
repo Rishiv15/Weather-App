@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		<title>Weather App</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="styles2.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
+	</head>
+	
+	<body>
+		<div class="site-header">
+			<div class="container title">
+				<h1 class="site-title "><a href="about.html"><i class="fas fa-bolt"></i> The Weatherists</a></h1>
+				<ul class="nav justify-content-end flex-column flex-sm-row">
+					<li class="nav-item">
+						<a class="nav-link active a_modify" href="about.html">About Us</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link a_modify" href="index.html">Current Weather</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link a_modify" href="country_maps.html">Maps</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link a_modify" href="#" tabindex="-1" aria-disabled="true">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link a_modify" href="#">Register</a>
+					</li>
+				</ul> 
+			</div>
+        </div>
+		<main>
+			<div class="container">
+				<div class="contact-details">
+					<div class="map">
+						<img class="resize" src="data:image/jpeg;base64,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" alt="">
+					</div>
+					<div class="contact-info">
+						<address>
+							<p>Somewhere on Earth</p>
+						</address>
+					</div>
+				</div>
+				<div>
+					<h2 class="section-title">About us</h2>
+					<p>This is the best weather app.</p>
+					<h3 class="section-title"><b>Developers</b></h3>
+					<div class="container border border-dark d-flex justify-content-center mb-5">
+						<ul>
+							<li>Rishiv Chhabria</li>
+							<li>Siddharth Nayak</li>
+							<li>Yashwik Panchal</li>
+							<li>Sanil Pandhare</li>
+						</ul>
+					</div>
+					
+					<!--<form action="#" class="contact-form" style="margin: 50px 450px;">
+						<div class="row">
+							<div class="col-md-6"><input type="text" placeholder="Your name..."></div>
+							<div class="col-md-6"><input type="text" placeholder="Email Addresss..."></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><input type="text" placeholder="Company name..."></div>
+							<div class="col-md-6"><input type="text" placeholder="Website..."></div>
+						</div>
+						<textarea name="" placeholder="Message..."></textarea>
+						<div class="text-right">
+							<input type="submit" placeholder="Send message">
+						</div>
+					</form>-->
+				</div>
+			</div>
+			<div class="container d-flex border border-primary justify-content-center inline">
+				<button class="btn btn-info">About</button>
+				<button class="btn btn-danger">Contact</button>
+				<button class="btn btn-warning">Maps</button>
+			</div>
+			<div class="container d-flex border border-primary justify-content-between inline">
+				<button class="btn btn-info">About</button>
+				<button class="btn btn-danger">Contact</button>
+				<button class="btn btn-warning">Maps</button>
+			</div>
+			<div class="container d-flex border border-primary justify-content-center inline">
+				<button class="btn btn-info">About</button>
+				<button class="btn btn-primary">Us</button>
+				<button class="btn btn-danger">Contact</button>
+				<button class="btn btn-success">Home</button>
+				<button class="btn btn-warning">Maps</button>
+			</div>
+		
+		</main> 
+
+		<table>
+			<th>Cities</th>
+			<th>Temperature</th>
+			<th>Humidity</th>
+			<tr>
+				<td>Mumbai</td>
+				<td>23 C</td>
+				<td>50%</td>
+			</tr>
+			<tr>
+				<td>Delhi</td>
+				<td>20 C</td>
+				<td>30%</td>
+			</tr>
+			<tr>
+				<td>Kolkata</td>
+				<td>27 C</td>
+				<td>70%</td>
+			</tr>
+		</table>
+		<q>Weather App</q>
+
+		<iframe class="center" src="../demo/demo.html" frameborder="5"></iframe>
+		
+		<footer class="site-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-md-offset-1">
+						<div class="social-links">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-google-plus"></i></a>
+							<a href="#"><i class="fa fa-pinterest"></i></a>
+						</div>
+					</div>
+				</div>
+
+				<p class="colophon">Copyright 2014 The Weatherists. All rights reserved</p>
+			</div>
+		</footer>
+	</div>
+	</body>
+</html>
