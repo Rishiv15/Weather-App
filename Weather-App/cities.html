@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		<title>Weekly Forecast</title>
+        <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		
+        <link rel="stylesheet" href="styles2.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
+	</head>
+
+	<body>
+		
+		<div class="site-header">
+			<div class="container title">
+				<h1 class="site-title"><a href="about.html"><i class="fas fa-cloud"></i> The Weatherists</a></h1>
+				<ul class="nav justify-content-between flex-column flex-sm-row">
+					<li class="nav-item">
+						<a class="nav-link a_modify" href="about.html">About Us</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active a_modify" href="index.html">Current Weather</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link a_modify" href="maps/country_maps.html">Maps</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link a_modify" href="#">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link a_modify" href="#">Register</a>
+					</li>
+				</ul> 
+			</div>
+        </div> 
+
+        <div class="container">
+            <label for="sear">Search: </label>
+            <input class="mb-0 mt-3" type="search" id="sear" name="searchPlace">
+            <button class="btnn"><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="forecast-table" style="margin-top: 160px;">
+            <div class="container">
+                <div class="forecast-container">
+
+                    <div class="forecast">
+                        <div class="forecast-header">
+                            <div class="location">Mumbai</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 pl-5">
+                                <div class="pt-3">	
+                                    <h2 style="font-size: 30px;"><i class="far fa-sun"></i></h2>             
+                                </div>
+                            </div>
+                            <div class="col-6 pt-3 pr-5">
+                                <div class="numCity">23<sup>o</sup>C</div>
+                            </div>                       
+                        </div>  
+                        <div class="row">
+                            <div class="col-6 pl-5">
+                                <div class="pt-3">	
+                                    <h2 style="font-size: 30px;"><i class="fas fa-wind"></i></h2>             
+                                </div>
+                            </div>
+                            <div class="col-6 pt-3 pr-5">
+                                <div class="numCity">18km/h</div>
+                            </div>                       
+                        </div>                     
+                    </div>
+
+                    <div class="forecast">
+                        <div class="forecast-header">
+                            <div class="location">Cairo</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 pl-5">
+                                <div class="pt-3">	
+                                    <h2 style="font-size: 30px;"><i class="fas fa-cloud-rain"></i></h2>             
+                                </div>
+                            </div>
+                            <div class="col-6 pt-3 pr-5">
+                                <div class="numCity">400mm</div>
+                            </div>                       
+                        </div>  
+                        <div class="row">
+                            <div class="col-6 pl-5">
+                                <div class="pt-3">	
+                                    <h2 style="font-size: 30px;"><i class="fas fa-umbrella"></i></h2>             
+                                </div>
+                            </div>
+                            <div class="col-6 pt-3 pr-5">
+                                <div class="numCity">70%</div>
+                            </div>                       
+                        </div> 
+                        <div class="row hidden">
+                            <div class="col-6 pl-5">
+                                <div class="pt-3">	
+                                    <h2 style="font-size: 30px;"><i class="far fa-sun"></i></h2>             
+                                </div>
+                            </div>
+                            <div class="col-6 pt-3 pr-5">
+                                <div class="numCity">23<sup>o</sup>C</div>
+                            </div>                       
+                        </div>                    
+                    </div>
+
+                    <div class="forecast">
+                        <div class="forecast-header">
+                            <div class="location">Tokyo</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 pl-5">
+                                <div class="pt-3">	
+                                    <h2 style="font-size: 30px;"><i class="fas fa-umbrella"></i></h2>             
+                                </div>
+                            </div>
+                            <div class="col-6 pt-3 pr-5">
+                                <div class="numCity">70%</div>
+                            </div>                       
+                        </div>  
+                        <div class="row">
+                            <div class="col-6 pl-5">
+                                <div class="pt-3">	
+                                    <h2 style="font-size: 30px;"><i class="far fa-sun"></i></h2>             
+                                </div>
+                            </div>
+                            <div class="col-6 pt-3 pr-5">
+                                <div class="numCity">23<sup>o</sup>C</div>
+                            </div>                       
+                        </div>                     
+                    </div>
+
+                    <div class="forecast">
+                        <div class="forecast-header">
+                            <div class="location">New York</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 pl-5">
+                                <div class="pt-3">	
+                                    <h2 style="font-size: 30px;"><i class="fas fa-umbrella"></i></h2>             
+                                </div>
+                            </div>
+                            <div class="col-6 pt-3 pr-5">
+                                <div class="numCity">70%</div>
+                            </div>                       
+                        </div>   
+                        <div class="row">
+                            <div class="col-6 pl-5">
+                                <div class="pt-3">	
+                                    <h2 style="font-size: 30px;"><i class="fas fa-cloud-rain"></i></h2>             
+                                </div>
+                            </div>
+                            <div class="col-6 pt-3 pr-5">
+                                <div class="numCity">400mm</div>
+                            </div>                       
+                        </div>                    
+                    </div>
+
+                    <div class="forecast">
+                        <div class="forecast-header">
+                            <div class="location">Canberra</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 pl-5">
+                                <div class="pt-3">	
+                                    <h2 style="font-size: 30px;"><i class="fas fa-wind"></i></h2>             
+                                </div>
+                            </div>
+                            <div class="col-6 pt-3 pr-5">
+                                <div class="numCity">18km/h</div>
+                            </div>                       
+                        </div>  
+                        <div class="row">
+                            <div class="col-6 pl-5">
+                                <div class="pt-3">	
+                                    <h2 style="font-size: 30px;"><i class="fas fa-umbrella"></i></h2>             
+                                </div>
+                            </div>
+                            <div class="col-6 pt-3 pr-5">
+                                <div class="numCity">70%</div>
+                            </div>                       
+                        </div>                     
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <canvas id="glCanvas" width="640" height="480"></canvas>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-1">
+                        <div class="social-links">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="colophon">Copyright 2014 The Weatherists. All rights reserved.</p>
+            </div>
+        </footer> 
+        
+        <script src="script.js"></script>
+	</body>
+</html>

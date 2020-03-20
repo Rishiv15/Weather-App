@@ -1,19 +1,20 @@
 footer {
-display: block;
+    display: block;
 }
 
 html {
-background: #009ad8;
-color: #000;
+    background: #009ad8;
+    color: #000;
 }
 
-html,
-button {
-font-family: sans-serif; 
+html, button {
+    font-family: sans-serif; 
 }
 
 body {
-margin: 0; 
+    margin: 0;
+    background: -webkit-linear-gradient(to right, #292E49, #536976);
+    background: linear-gradient(to right, #292E49, #536976); 
 }
 
 button {
@@ -26,40 +27,46 @@ button {
 }
 
 body {
-color: #bfc1c8;
-font-family: "Roboto", "Open Sans", sans-serif;
-font-size: 14px;
-font-weight: 300;
-line-height: 1.5;
-background: #1e202b; 
+    color: #bfc1c8;
+    font-family: "Roboto", "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+     
+}
+
+.modify {
+    color: whitesmoke;
 }
 
 h2, h3 {
-font-weight: 700;
-margin: 0 0 20px;
-line-height: normal; 
+    font-weight: 700;
+    margin: 0 0 20px;
+    line-height: normal; 
 }
 
 ul {
-margin: 0;
-padding-left: 0; 
+    margin: 0;
+    padding-left: 0; 
 }
 
 a {
-text-decoration: none;
-color: whitesmoke;
+    text-decoration: none;
+    color: whitesmoke;
 }
 
 address {
-font-style: normal; 
+    font-style: normal; 
 }
 
 p {
-margin-top: 0; 
+    margin-top: 0; 
 }
 
 .map {
-height: 220px; 
+    height: 220px; 
+    width: 350px;
+    margin: 0px;
 }
     
 .site-footer {
@@ -68,7 +75,7 @@ height: 220px;
 }
 
 .site-header{
-    color: white;
+    color: whitesmoke;
     padding: 50px 0;
 }
 
@@ -78,6 +85,7 @@ table {
     margin-top: 80px;
     border: 3px solid #009ad8; 
     text-align: center;
+    font-size: 25px;
 }
 
 main {
@@ -87,7 +95,40 @@ main {
 .contact-details {
     font-size: 0.8em;
     background-color: #262936;
-    margin: 20px;
+}
+
+.btnn {
+    background: #1e202b;
+    height: 27px;
+    border: none;
+}
+
+input {
+    border: 2px solid #009ad8;
+    border-radius: 10px;
+    background: #1e202b;
+    padding: 3px 8px;
+    color: whitesmoke;
+}
+
+i.fa-search {
+    color: #009ad8;
+}
+
+h1 i.fa-cloud {
+    color: cyan;
+}
+
+input:focus {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+label {
+    font-weight: 400;
 }
 
 .contact-info {
@@ -138,11 +179,11 @@ a:hover {
     background: #323544;
     display: table;
     table-layout: fixed;
-    width: 100%;
     overflow: hidden;
     border-radius: 10px;
     margin-top: -150px;
     margin-bottom: 50px; 
+    box-shadow: 3px 3px 5px #009ad8;
 }
 
 .forecast-container .forecast {
@@ -150,34 +191,47 @@ a:hover {
     vertical-align: top; 
 }
 
+.forecast-container .forecastPart {
+    display: table-column-group;
+    vertical-align: top; 
+    padding: 0rem;
+}
+
 .forecast-container .forecast:nth-child(even) {
-background-color: #262936; 
+    background-color: #262936; 
 }
 
 .forecast-container .forecast.today {
-width: 420px; 
+    width: 420px; 
 }
 
 .forecast-container .forecast.today .forecast-header:after {
-content: " ";
-clear: both;
-display: block;
-overflow: hidden;
-height: 0; 
+    content: " ";
+    clear: both;
+    display: block;
+    overflow: hidden;
+    height: 0; 
 }
 
 .forecast-container .forecast.today .forecast-header .day {
-float: left; 
+    float: left; 
 }
 
 .forecast-container .forecast.today .forecast-header .date {
-float: right; 
+    float: right; 
 }
 
 .forecast-container .forecast.today .forecast-content {
     text-align: left;
     padding-top: 30px;
     padding-bottom: 30px; 
+}
+
+.forecast-container .forecast.today .forecast-contentPart {
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px; 
+    margin-top: 0rem;
 }
 
 .forecast-container .forecast.today .location {
@@ -199,27 +253,47 @@ float: right;
     vertical-align: middle;
 }
 
+/*div.hidden {
+    display: none;
+}
+
+div.row:hover div.hidden {
+    display: inline-block: 
+}*/
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.numCity {
+    font-size: 20px;
+    float: right; 
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .forecast-container .forecast.today span {
     margin-right: 20px; 
 }
 
 .forecast-container .forecast.today span img {
-margin-right: 5px;
-vertical-align: middle; 
+    margin-right: 5px;
+    vertical-align: middle; 
 }
 
 .forecast-container .forecast .forecast-header {
-background: rgba(0, 0, 0, 0.1);
-padding: 10px;
-text-align: center;
-font-weight: 400; 
-margin-bottom: 0px;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    font-weight: 400; 
+    margin-bottom: 0px;
 }
 
 .forecast-container .forecast .forecast-content {
-padding: 50px 20px 10px;
-text-align: center;
-margin-top: 20px; 
+    padding: 50px 20px 10px;
+    text-align: center;
+    margin-top: 20px; 
 }
 
 .forecast-container .forecast .forecast-content .degree {
@@ -250,6 +324,12 @@ map {
 img {
     margin-left: 200px;
     margin-bottom: 100px;
+    transition: width, height 1.0s;
+    display: none;
+}
+
+li {
+    display: none;
 }
 
 .active {
@@ -260,3 +340,24 @@ div.col-6 a {
     font-weight: 500;
     font-size: 1.6rem;
 }
+
+td, th {
+    border: 1px solid steelblue;
+}
+
+.spacing {
+    padding: 1.2rem;
+    padding-top: 0rem;
+}
+
+/*@keyframes trans {
+    0% {right: 0px};
+    25% {right: 5px};
+    50% {right: 10px};
+    75% {right: 15px};
+}
+
+li {
+    animation-name: trans;
+    animation-duration: 1s;
+}*/
