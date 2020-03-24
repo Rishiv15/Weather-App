@@ -1,0 +1,108 @@
+<%- include ('./partials/header') %>
+
+<div class="container">
+    <h2 class="ml-3" style="font-size: 1.5rem;">Mumbai, 6th Oct Tuesday</h2>
+    <div class="forecast-table" style="margin-top: 160px;">
+        <div class="container">
+            <div class="forecast-container">
+
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="day">Temperature</div>
+                    </div>
+                    <div class="forecast-content pt-0">
+                        <div class="degree pt-3">	
+                            <div class="forecast-icon">
+                                <h2 style="font-size: 50px;"><i class="far fa-sun"></i></h2>
+                            </div>
+                            <div class="num">23<sup>o</sup>C</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="day">Rainfall</div>
+                    </div>
+                    <div class="forecast-content pt-0">
+                        <div class="degree pt-3">
+                            <div class="forecast-icon">
+                                <h2 style="font-size: 50px;"><i class="fas fa-cloud-rain"></i></h2>
+                            </div>	
+                            <div class="num">400mm</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="day">Humidity</div>
+                    </div>
+                    <div class="forecast-content pt-0">
+                        <div class="degree pt-3">	
+                            <div class="forecast-icon">
+                                <h2 style="font-size: 50px;"><i class="fas fa-umbrella"></i></h2>
+                            </div>
+                            <div class="num">70%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="day">Wind Speed</div>
+                    </div>
+                    <div class="forecast-content pt-0">
+                        <div class="degree pt-3">	
+                            <div class="forecast-icon">
+                                <h2 style="font-size: 50px;"><i class="fas fa-wind"></i></h2>
+                            </div>
+                            <div class="num pb-4">18km/h</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <table>
+        <th>Parameter</th>
+        <th>Value</th>
+        <tr>
+            <td>Temperature</td>
+            <td>
+                <div class="degree">
+                    <div class="pt-3 num spacing">23<sup>o</sup>C</div>	
+                    <div class="forecast-icon spacing">
+                        <h2 class="mb-0" style="font-size: 40px;"><i class="far fa-sun"></i></h2>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Rainfall</td>
+            <td>
+                <div class="degree">
+                    <div class="pt-3 num spacing">300mm</div>	
+                    <div class="forecast-icon spacing">
+                        <h2 class="mb-0" style="font-size: 40px;"><i class="fas fa-cloud-rain"></i></h2>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Wind Speed</td>
+            <td>
+                <div class="degree">
+                    <div class="pt-3 num spacing">18km/h</div>	
+                    <div class="forecast-icon spacing">
+                        <h2 class="mb-0" style="font-size: 40px;"><i class="fas fa-wind"></i></h2>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<%- include ('./partials/footer') %>

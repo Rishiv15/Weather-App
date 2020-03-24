@@ -1,0 +1,159 @@
+<%- include ('./partials/header') %>
+
+    <div class="container">
+        <label for="sear">Search: </label>
+        <input class="mb-0 mt-3" type="search" id="sear" name="searchPlace">
+        <button class="btnn"><i class="fas fa-search"></i></button>
+    </div>
+
+    <div class="forecast-table" style="margin-top: 160px;">
+        <div class="container">
+            <div class="forecast-container">
+
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="location">Mumbai</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 pl-5">
+                            <div class="pt-3">	
+                                <h2 style="font-size: 30px;"><i class="far fa-sun"></i></h2>             
+                            </div>
+                        </div>
+                        <div class="col-6 pt-3 pr-5">
+                            <div class="numCity">23<sup>o</sup>C</div>
+                        </div>                       
+                    </div>  
+                    <div class="row">
+                        <div class="col-6 pl-5">
+                            <div class="pt-3">	
+                                <h2 style="font-size: 30px;"><i class="fas fa-wind"></i></h2>             
+                            </div>
+                        </div>
+                        <div class="col-6 pt-3 pr-5">
+                            <div class="numCity">18km/h</div>
+                        </div>                       
+                    </div>                     
+                </div>
+
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="location">Cairo</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 pl-5">
+                            <div class="pt-3">	
+                                <h2 style="font-size: 30px;"><i class="fas fa-cloud-rain"></i></h2>             
+                            </div>
+                        </div>
+                        <div class="col-6 pt-3 pr-5">
+                            <div class="numCity">400mm</div>
+                        </div>                       
+                    </div>  
+                    <div class="row">
+                        <div class="col-6 pl-5">
+                            <div class="pt-3">	
+                                <h2 style="font-size: 30px;"><i class="fas fa-umbrella"></i></h2>             
+                            </div>
+                        </div>
+                        <div class="col-6 pt-3 pr-5">
+                            <div class="numCity">70%</div>
+                        </div>                       
+                    </div> 
+                    <div class="row hidden">
+                        <div class="col-6 pl-5">
+                            <div class="pt-3">	
+                                <h2 style="font-size: 30px;"><i class="far fa-sun"></i></h2>             
+                            </div>
+                        </div>
+                        <div class="col-6 pt-3 pr-5">
+                            <div class="numCity">23<sup>o</sup>C</div>
+                        </div>                       
+                    </div>                    
+                </div>
+
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="location">Tokyo</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 pl-5">
+                            <div class="pt-3">	
+                                <h2 style="font-size: 30px;"><i class="fas fa-umbrella"></i></h2>             
+                            </div>
+                        </div>
+                        <div class="col-6 pt-3 pr-5">
+                            <div class="numCity">70%</div>
+                        </div>                       
+                    </div>  
+                    <div class="row">
+                        <div class="col-6 pl-5">
+                            <div class="pt-3">	
+                                <h2 style="font-size: 30px;"><i class="far fa-sun"></i></h2>             
+                            </div>
+                        </div>
+                        <div class="col-6 pt-3 pr-5">
+                            <div class="numCity">23<sup>o</sup>C</div>
+                        </div>                       
+                    </div>                     
+                </div>
+
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="location">New York</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 pl-5">
+                            <div class="pt-3">	
+                                <h2 style="font-size: 30px;"><i class="fas fa-umbrella"></i></h2>             
+                            </div>
+                        </div>
+                        <div class="col-6 pt-3 pr-5">
+                            <div class="numCity">70%</div>
+                        </div>                       
+                    </div>   
+                    <div class="row">
+                        <div class="col-6 pl-5">
+                            <div class="pt-3">	
+                                <h2 style="font-size: 30px;"><i class="fas fa-cloud-rain"></i></h2>             
+                            </div>
+                        </div>
+                        <div class="col-6 pt-3 pr-5">
+                            <div class="numCity">400mm</div>
+                        </div>                       
+                    </div>                    
+                </div>
+
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="location">Canberra</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 pl-5">
+                            <div class="pt-3">	
+                                <h2 style="font-size: 30px;"><i class="fas fa-wind"></i></h2>             
+                            </div>
+                        </div>
+                        <div class="col-6 pt-3 pr-5">
+                            <div class="numCity">18km/h</div>
+                        </div>                       
+                    </div>  
+                    <div class="row">
+                        <div class="col-6 pl-5">
+                            <div class="pt-3">	
+                                <h2 style="font-size: 30px;"><i class="fas fa-umbrella"></i></h2>             
+                            </div>
+                        </div>
+                        <div class="col-6 pt-3 pr-5">
+                            <div class="numCity">70%</div>
+                        </div>                       
+                    </div>                     
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <canvas id="glCanvas" width="640" height="480"></canvas>
+
+<%- include ('./partials/footer') %>
