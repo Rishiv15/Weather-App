@@ -3,7 +3,7 @@ footer {
 }
 
 html {
-    background: #009ad8;
+    
     color: #000;
 }
 
@@ -74,10 +74,7 @@ p {
     padding: 50px 0; 
 }
 
-.site-header{
-    color: whitesmoke;
-    padding: 50px 0;
-}
+
 
 table {
     margin: auto; 
@@ -95,6 +92,7 @@ main {
 .contact-details {
     font-size: 0.8em;
     background-color: #262936;
+    margin-top: 150px;
 }
 
 .btnn {
@@ -149,19 +147,34 @@ h1 {
     margin-right: 20px;
     margin-top: 0px;
     color: white;
+    
 }
 
 a:hover {
     color: #009ad8;
     text-decoration: none;
 }
+.navitem{
+    padding-top:auto;
+    padding-left: auto;
+    font-size: large;
+    font-weight: 500;
+    margin-left: 15px;
+    
+}
+.jumbotron{
+    height: 200px;
+    margin-top:25px;
+}
 
 .site-header {
-    height: 150px;
+    height: 50px;
     background-color: #262936;
     padding-top: 15px;
-    margin-bottom: 30px;
+    padding-bottom: 50px;
+    margin-bottom: 25px;
 }
+
 .title {
     padding-bottom: 30px;
 }
@@ -181,7 +194,7 @@ a:hover {
     table-layout: fixed;
     overflow: hidden;
     border-radius: 10px;
-    margin-top: -150px;
+    margin-top: 150px;
     margin-bottom: 50px; 
     box-shadow: 3px 3px 5px #009ad8;
 }
@@ -349,6 +362,14 @@ td, th {
     padding: 1.2rem;
     padding-top: 0rem;
 }
+
+.navbar-nav{
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+
+}
+
+
 
 /*@keyframes trans {
     0% {right: 0px};
