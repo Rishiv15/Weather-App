@@ -1,14 +1,25 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
+var express     =   require("express");
+var app         =   express();
+var bodyParser  =   require("body-parser");
+var request     =   require("request")
+
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
+console.log("hi")
+
 app.get("/", function(req, res){
-    res.render("about");
+    request('http://api.openweathermap.org/data/2.5/weather?q=mumbai&appid=48164502b664fb28643399e9f69d1016', function(error,response,body){
+        if(!error && response.statusCode==200){
+            console.log(body);
+        }
+        else{console.log("Error occured")}
+    })
+    res.render("home");
 });
+    
 
 app.get("/about", function(req, res){
     res.render("about");
