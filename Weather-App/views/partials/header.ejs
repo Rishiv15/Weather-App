@@ -14,25 +14,28 @@
 	
 	<body>
 		
-		<header class="site-header fixed-top">
-			<nav class="nav navbar navbar-expand-md navbar-dark bg-steel fixed-top cnav">
-			  <div class="container cnav">
-				<h1 class="site-title "><a href="/" class="nav-link"><i class="fas fa-cloud"></i> The Weatherists</a></h1>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-				  <span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarToggle">
-				  <div class="navbar-nav mr-auto">
-					<a class="nav-item nav-link  navitem border border-warning rounded-circle" href="/">Home</a>
-					<a class="nav-item nav-link  navitem border border-warning rounded-circle" href="/about">About</a>
-				  </div>
-				  <!-- Navbar Right Side -->
-				  <div class="navbar-nav">
-					<a class="nav-item nav-link navitem border border-warning rounded-circle" href="/login">Login</a>
-					<a class="nav-item nav-link navitem border border-warning rounded-circle" href="/register">Register</a>
-				  </div>
-				</div>
-			  </div>
-			</nav>
-		  </header>
-		
+		<div class="site-header">
+			<div class="title ml-5">
+				<h3 class="site-title pt-2"><a href="/about"><i class="fas fa-cloud"></i> The Weatherists</a></h1>
+				<ul class="nav justify-content-around flex-column flex-sm-row" style="padding-top: 14px;">
+					<li class="nav-item">
+						<a class="nav-link a_modify" href="/home">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active a_modify" href="/day_weather">Current Weather</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active a_modify" href="/index">Forecast</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link a_modify" href="/country_map">Maps</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link a_modify" href="#">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link a_modify" href="#">Register</a>
+					</li>
+				</ul> 
+			</div>
+		</div>

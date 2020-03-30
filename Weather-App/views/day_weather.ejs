@@ -1,8 +1,33 @@
 <%- include ('./partials/header') %>
 
+<!--var obj = {
+    icon: icon,
+    cond: cond,
+    temp: temp,
+    temp_max: temp_max,
+    temp_min: temp_min,
+    temp_feels: temp_feels,
+    pressure: pressure,
+    humidity: humidity,
+    wind_speed: wind_speed,
+    clouds: clouds,
+    sunrise: sunrise,
+    sunset: sunset
+};-->
+
 <div class="container">
-    <h2 class="ml-3" style="font-size: 1.5rem;">Mumbai, 6th Oct Tuesday</h2>
-    <div class="forecast-table" style="margin-top: 160px;">
+
+    <div class="container">
+        <form action="/day_weather", method="GET">
+            <button type="submit" value="submit" class="btnn mt-1"><i class="fas fa-search"></i></button>
+            <input class="mb-4" type="search" id="sear" name="place" placeholder="Search for a city">
+        </form>
+    </div>
+    
+    <h2 class="ml-3 mb-0" style="font-size: 1.2rem;"><%= place[0].toUpperCase()+place.slice(1) %>, <%= date %></h2>
+    <hr class="new1" >
+    <h3 class="ml-3" style="font-size: 1.5rem;"><%= cond %></h3>
+    <div class="forecast-table">
         <div class="container">
             <div class="forecast-container">
 
@@ -15,21 +40,31 @@
                             <div class="forecast-icon">
                                 <h2 style="font-size: 50px;"><i class="far fa-sun"></i></h2>
                             </div>
-                            <div class="num">23<sup>o</sup>C</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="forecast">
-                    <div class="forecast-header">
-                        <div class="day">Rainfall</div>
-                    </div>
-                    <div class="forecast-content pt-0">
-                        <div class="degree pt-3">
-                            <div class="forecast-icon">
-                                <h2 style="font-size: 50px;"><i class="fas fa-cloud-rain"></i></h2>
-                            </div>	
-                            <div class="num">400mm</div>
+                            <div class="num mb-2"><%= Math.round(temp * 100) / 100 %><sup>o</sup>C</div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="mb-0" style="font-size: 1rem;">Max: </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-0" style="font-size: 1rem;"><%= Math.round(temp_max * 100) / 100 %><sup>o</sup>C</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="mb-0" style="font-size: 1rem;">Min: </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-0" style="font-size: 1rem;"><%= Math.round(temp_min * 100) / 100 %><sup>o</sup>C</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="mb-0" style="font-size: 1rem;">Feels:</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-0" style="font-size: 1rem;"><%= Math.round(temp_feels * 100) / 100 %><sup>o</sup>C</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -43,21 +78,65 @@
                             <div class="forecast-icon">
                                 <h2 style="font-size: 50px;"><i class="fas fa-umbrella"></i></h2>
                             </div>
-                            <div class="num">70%</div>
+                            <div class="num"><%= humidity %>%</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="forecast">
                     <div class="forecast-header">
-                        <div class="day">Wind Speed</div>
+                        <div class="day">Wind</div>
                     </div>
                     <div class="forecast-content pt-0">
                         <div class="degree pt-3">	
                             <div class="forecast-icon">
                                 <h2 style="font-size: 50px;"><i class="fas fa-wind"></i></h2>
                             </div>
-                            <div class="num pb-4">18km/h</div>
+                            <div class="num pb-4"><%= wind_speed %>m/s</div>
+                            <p style="font-size: 1rem;">Direction: <%= wind_deg %><sup>o</sup></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="day">Pressure</div>
+                    </div>
+                    <div class="forecast-content pt-0">
+                        <div class="degree pt-3">
+                            <div class="forecast-icon">
+                                <h2 style="font-size: 50px;"><i class="fab fa-wpressr"></i></h2>
+                            </div>	
+                            <div class="num"><%= pressure %>hPa</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="day">Clouds</div>
+                    </div>
+                    <div class="forecast-content pt-0">
+                        <div class="degree pt-3">	
+                            <div class="forecast-icon">
+                                <h2 style="font-size: 50px;"><i class="fas fa-cloud"></i></h2>
+                            </div>
+                            <div class="num"><%= clouds %>%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="day">Sun</div>
+                    </div>
+                    <div class="forecast-content pt-0">
+                        <div class="degree pt-3">	
+                            <div class="forecast-icon">
+                                <h2 style="font-size: 50px;"><i class="fas fa-cloud"></i></h2>
+                            </div>
+                            <div class="num"><%= sunrise %> A.M.</div>
+                            <div class="num"><%= sunset %> P.M.</div>
                         </div>
                     </div>
                 </div>
@@ -65,44 +144,6 @@
             </div>
         </div>
     </div>
-
-    <table>
-        <th>Parameter</th>
-        <th>Value</th>
-        <tr>
-            <td>Temperature</td>
-            <td>
-                <div class="degree">
-                    <div class="pt-3 num spacing">23<sup>o</sup>C</div>	
-                    <div class="forecast-icon spacing">
-                        <h2 class="mb-0" style="font-size: 40px;"><i class="far fa-sun"></i></h2>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Rainfall</td>
-            <td>
-                <div class="degree">
-                    <div class="pt-3 num spacing">300mm</div>	
-                    <div class="forecast-icon spacing">
-                        <h2 class="mb-0" style="font-size: 40px;"><i class="fas fa-cloud-rain"></i></h2>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Wind Speed</td>
-            <td>
-                <div class="degree">
-                    <div class="pt-3 num spacing">18km/h</div>	
-                    <div class="forecast-icon spacing">
-                        <h2 class="mb-0" style="font-size: 40px;"><i class="fas fa-wind"></i></h2>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
 </div>
 
 <%- include ('./partials/footer') %>
