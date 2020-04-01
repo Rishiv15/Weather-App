@@ -41,7 +41,7 @@ body {
 
 h2, h3 {
     font-weight: 700;
-    margin: 0 0 20px;
+    margin: 0 0px;
     line-height: normal; 
 }
 
@@ -150,6 +150,7 @@ label {
     border: 2px solid #009ad8;
     border-radius: 20px;
     padding: 2px 20px;
+    font-size: 1rem;
 }
 
 h1 {
@@ -323,9 +324,9 @@ div.row:hover div.hidden {
 }
 
 .forecast-container .forecast .forecast-content {
-    padding: 50px 20px 10px;
+    padding: 0px 20px 10px;
     text-align: center;
-    margin-top: 20px; 
+     
 }
 
 .forecast-container .forecast .forecast-content .degree {
@@ -338,11 +339,16 @@ div.row:hover div.hidden {
     font-size: 16px;
 }
 
+.mar {
+    margin-bottom: 20px;
+}
+
 .forecast > h2 > i {
     margin: 30px;
     font-size: 30px;
-    margin-left: 40px;
-    margin-top: 60px;
+    margin-left: 55px;
+    margin-bottom: 0px;
+    margin-top: 15px;
 }
 
 .forecast > h2 {

@@ -7,88 +7,126 @@
         </form>
     </div>
 
+    
+
     <div class="forecast-table">
         <div class="container">
             <div class="forecast-container">
                 <div class="today forecast">
                     <div class="forecast-header">
-                        <div class="day">Monday</div>
-                        <div class="date"><%= date %></div>
+                        <div class="day"><%= day1[0].day %></div>
+                        <div class="date"><%= day1[0].dt %></div>
                     </div> 
-                    <div class="forecast-content">
+                    <div class="forecast-content pt-3">
                         <div class="location"><a href="/cities"><%= place[0].toUpperCase()+place.slice(1) %></a></div>
-                        <a href="/day_weather">
-                            <div class="degree">
-                                <div class="num"><%= Math.round(temp * 10) / 10 %><sup>o</sup>C</div>	
-                                <div class="forecast-icon">
-                                    <h2 style="font-size: 60px;"><i class="far fa-sun"></i></h2>
+                        <% for(var i=0; i<count_day1; i++){ %>
+
+                            <div class="bg bg-success text-center" style="height: 1.5rem; font-size: 1.2rem; font-weight: 500;"><%= day1[i].time %></div>
+                            <a href="/day_weather">
+                                <div class="degree">
+                                    <div class="num"><%= Math.round(day1[i].main.temp * 10) / 10 %><sup>o</sup>C</div>	
+                                    <div class="forecast-icon">
+                                        <h2 style="font-size: 60px;"><i class="far fa-sun"></i></h2>
+                                    </div>
                                 </div>
+                            </a>
+                            <div class="mb-3">
+                                <span><i class="fas fa-umbrella mr-2"></i><%= day1[i].main.humidity %>%</span>
+                                <span><i class="fas fa-wind mr-2"></i><%= day1[i].wind.speed %>m/s</span>
+                                <span><i class="fas fa-compass mr-2"></i><%= day1[i].wind.deg %></span>
                             </div>
-                        </a>
-                        <span><i class="fas fa-umbrella mr-2"></i><%= humidity %>%</span>
-                        <span><i class="fas fa-wind mr-2"></i><%= wind_speed %>m/s</span>
-                        <span><i class="fas fa-compass mr-2"></i>East</span>
+                            
+                        <% } %>
+
                     </div>
                 </div>
+
+                
+
                 <div class="forecast">
                     <div class="forecast-header">
-                        <div class="day">Tuesday</div>
+                        <div class="day"><%= day2[0].day %>, <%= day2[0].dt %></div>
                     </div>
-                    <h2><i class="fas fa-cloud"></i></h2> 
-                    <div class="forecast-content">
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
-                    </div>
+
+                    <% for(var i=0; i<8; i++ ){ %>
+
+                        <div class="bg bg-primary text-center" style="height: 1.5rem; font-size: 1.2rem; font-weight: 500;"></div>
+                        <h2><i class="fas fa-cloud-rain"></i></h2>
+                        <div class="forecast-content">
+                            <div class="degree"><%= day2[i].main.temp %><sup>o</sup>C</div>
+                            <small>Min: <%= day2[i].main.temp_min %><sup>o</sup>C</small>
+                            <small style="font-size: .9rem;" class="mar">Humidity: <%= day2[i].main.humidity %>%</small>
+                        </div>
+
+                    <% } %>
                 </div>
+
                 <div class="forecast">
                     <div class="forecast-header">
-                        <div class="day">Wednesday</div>
+                        <div class="day"><%= day3[0].day %>, <%= day3[0].dt %></div>
                     </div> 
-                    <h2><i class="fas fa-cloud-rain"></i></h2>
-                    <div class="forecast-content">
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
-                    </div>
+                    <% for(var i=0; i<8; i++ ){ %>
+
+                        <div class="bg bg-primary text-center" style="height: 1.5rem; font-size: 1.2rem; font-weight: 500;"><%= day3[i].time %></div>
+                        <h2><i class="fas fa-cloud-rain"></i></h2>
+                        <div class="forecast-content">
+                            <div class="degree"><%= day3[i].main.temp %><sup>o</sup>C</div>
+                            <small>Min: <%= day3[i].main.temp_min %><sup>o</sup>C</small>
+                            <small style="font-size: .9rem;">Humidity: <%= day3[i].main.humidity %>%</small>
+                        </div>
+
+                    <% } %>
                 </div>
+
                 <div class="forecast">
                     <div class="forecast-header">
-                        <div class="day">Thursday</div>
+                        <div class="day"><%= day4[0].day %>, <%= day4[0].dt %></div>
                     </div>
-                    <h2><i class="fas fa-wind"></i></h2>
-                    <div class="forecast-content">
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
-                    </div>
+                    <% for(var i=0; i<8; i++ ){ %>
+
+                        <div class="bg bg-primary text-center" style="height: 1.5rem; font-size: 1.2rem; font-weight: 500;"></div>
+                        <h2><i class="fas fa-cloud-rain"></i></h2>
+                        <div class="forecast-content">
+                            <div class="degree"><%= day4[i].main.temp %><sup>o</sup>C</div>
+                            <small>Min: <%= day4[i].main.temp_min %><sup>o</sup>C</small>
+                            <small style="font-size: .9rem;">Humidity: <%= day4[i].main.humidity %>%</small>
+                        </div>
+
+                    <% } %>
                 </div>
+
                 <div class="forecast">
                     <div class="forecast-header">
-                        <div class="day">Friday</div>
+                        <div class="day"><%= day5[0].day %>, <%= day5[0].dt %></div>
                     </div> 
-                    <h2><i class="fas fa-umbrella"></i></h2>
-                    <div class="forecast-content">
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
-                    </div>
+                    <% for(var i=0; i<8; i++ ){ %>
+
+                        <div class="bg bg-primary text-center" style="height: 1.5rem; font-size: 1.2rem; font-weight: 500;"></div>
+                        <h2><i class="fas fa-cloud-rain"></i></h2>
+                        <div class="forecast-content">
+                            <div class="degree"><%= day5[i].main.temp %><sup>o</sup>C</div>
+                            <small>Min: <%= day5[i].main.temp_min %><sup>o</sup>C</small>
+                            <small style="font-size: .9rem;">Humidity: <%= day5[i].main.humidity %>%</small>
+                        </div>
+
+                    <% } %>
                 </div>
+
                 <div class="forecast">
                     <div class="forecast-header">
-                        <div class="day">Saturday</div>
+                        <div class="day"><%= day6[0].day %>, <%= day6[0].dt %></div>
                     </div>
-                    <h2><i class="far fa-sun"></i></h2>
-                    <div class="forecast-content">
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
-                    </div>
-                </div>
-                <div class="forecast">
-                    <div class="forecast-header">
-                        <div class="day">Sunday</div>
-                    </div> 
-                    <h2><i class="fas fa-cloud"></i></h2>
-                    <div class="forecast-content">
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
-                    </div>
+                    <% for(var i=0; i<count_day6; i++ ){ %>
+
+                        <div class="bg bg-success text-center" style="height: 1.5rem; font-size: 1.2rem; font-weight: 500;"><%= day6[i].time %></div>
+                        <h2><i class="fas fa-cloud-rain"></i></h2>
+                        <div class="forecast-content">
+                            <div class="degree"><%= day6[i].main.temp %><sup>o</sup>C</div>
+                            <small>Min: <%= day6[i].main.temp_min %><sup>o</sup>C</small>
+                            <small style="font-size: .9rem;">Humidity: <%= day6[i].main.humidity %>%</small>
+                        </div>
+
+                    <% } %>
                 </div>
             </div>
         </div>
