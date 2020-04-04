@@ -13,8 +13,6 @@ app.get("/", function(req, res){
 });
 
 /*app.get("/home", function(req, res){
-
-
     var places=["Mumbai","New York","Paris","London","Tokyo"];
     var data =[];
 
@@ -26,13 +24,6 @@ app.get("/", function(req, res){
 
     });
 }
-
-
-
-
-
-
-
     res.render("home");
 });
   */ 
@@ -44,17 +35,29 @@ app.get("/compare_form",function(req,res){
 
 
 app.get("/comparison",function(req,res){
-    var city1=req.query.city1;
-    var city2=req.query.city2;
+
+    var city1 = 'mumbai', city2 = 'delhi';
+
+    if(req.query.city1)
+        city1=req.query.city1;
+
+    if(req.query.city2)
+        city2=req.query.city2;
+
     console.log(city1);
     console.log(city2);
    var url1  = 'http://api.openweathermap.org/data/2.5/weather?q=' + city1 + '&appid=48164502b664fb28643399e9f69d1016&units=metric';
    var url2  = 'http://api.openweathermap.org/data/2.5/weather?q=' + city2 + '&appid=48164502b664fb28643399e9f69d1016&units=metric';
    
    var flag1=0,flag2=0;
+
+   var dcity1 = {};
+   var dcity2 = {};
     
    request(url1,function(error,response,body){
-    if(!error && response.statusCode == 200){
+       console.log("Error: "+error);
+       console.log("SC: "+response.statusCode)
+        if(!error && response.statusCode == 200){
         
         var data = JSON.parse(body);
         
@@ -85,7 +88,7 @@ app.get("/comparison",function(req,res){
         date = String(date);
         date = date.slice(0, 15);
 
-        var dcity1 = {
+        dcity1 = {
             place: city1,
             icon: icon,
             cond: cond,
@@ -106,7 +109,8 @@ app.get("/comparison",function(req,res){
         flag1 = 1;
         
         console.log(flag1);
-        console.log(dcity1)
+        console.log("Dcity1: ");
+        console.log(dcity1);
 
         
     }
@@ -119,7 +123,7 @@ app.get("/comparison",function(req,res){
   
    console.log(dcity1);
 
-   request(url2,function(error,response,body){
+   request(url2, function(error,response,body){
     if(!error && response.statusCode == 200){
         
         var data = JSON.parse(body);
@@ -170,11 +174,14 @@ app.get("/comparison",function(req,res){
             date: date
         }
         flag2 = 1;
+
+        dcity = {
+            dcity1: dcity1,
+            dcity2: dcity2
+        };
         
-        res.render('comparison');
+        res.render('comparison', dcity);
 
-
-       
     }
     else console.log("API 2 failed")
     
@@ -188,8 +195,6 @@ app.get("/comparison",function(req,res){
    console.log(flag1,flag2);
    if(flag1 && flag2)
         res.render('comparison')
-
-
 */
  });
 
@@ -199,18 +204,6 @@ app.get("/about", function(req, res){
 
 app.get("/cities", function(req, res){
     res.render("cities");
-});
-
-app.get("/climate_map", function(req, res){
-    res.render("climate_map");
-});
-
-app.get("/cloud_map", function(req, res){
-    res.render("cloud_map");
-});
-
-app.get("/country_map", function(req, res){
-    res.render("country_map");
 });
 
 var place = 'mumbai';
@@ -259,6 +252,7 @@ app.get("/index", function(req, res){
                 data.list[i].dt = all_dates[i];
                 data.list[i].time = all_times[i];
                 data.list[i].day = all_days[i];
+                data.list[i].icon_url = 'http://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png';
             }
 
             for(var i=0; i<8; i++){
@@ -307,7 +301,7 @@ app.get("/day_weather", function(req, res){
             var wind_speed = data.wind.speed;
             var temp = data["main"]["temp"];
             var coord = data["coord"];
-            var icon = data["weather"][0]["icon"];
+            var icon_url = 'http://openweathermap.org/img/wn/' + data["weather"][0]["icon"] + '@2x.png'; 
             var cond = data["weather"][0]["main"];
             var temp_feels = data.main.feels_like;
             var temp_min = data.main.temp_min;
@@ -316,13 +310,18 @@ app.get("/day_weather", function(req, res){
             var sunrise = data.sys.sunrise + data.timezone;
             var sunset = data.sys.sunset + data.timezone;
             var wind_deg = data.wind.deg;
+            var dt = data.dt + data.timezone;
 
             date = new Date(sunrise * 1000); 
             //console.log("New date: " + date);
             utcString = date.toUTCString(); 
            // console.log("utc string: " + utcString);
             sunrise = utcString.slice(-11, -4);
-            
+            dt = new Date(dt * 1000);
+            dt = dt.toUTCString();
+            dt = String(dt);       
+            time = dt.slice(17, 25);
+
             dateObj = new Date(sunset * 1000); 
             utcString = dateObj.toUTCString(); 
             sunset = utcString.slice(-11, -4);
@@ -331,7 +330,7 @@ app.get("/day_weather", function(req, res){
 
             var obj = {
                 place: place,
-                icon: icon,
+                icon_url: icon_url,
                 cond: cond,
                 temp: temp,
                 temp_max: temp_max,
@@ -345,7 +344,8 @@ app.get("/day_weather", function(req, res){
                 sunset: sunset,
                 wind_deg: wind_deg,
                 coord: coord,
-                date: date
+                date: date,
+                time: time
             };
             res.render("day_weather", obj);
         }
@@ -353,6 +353,27 @@ app.get("/day_weather", function(req, res){
             console.log("Error");
         }
     }); 
+});
+
+app.get("/day_forecast/:day", function(req, res){
+
+        day = req.params.day;
+        if(day === "day1")
+            res.render("day_forecast", {day: day1});
+
+        else if(day === "day2")
+            res.render("day_forecast", {day: day2});
+        
+        else if(day === "day3")
+            res.render("day_forecast", {day: day3});
+        
+        else if(day === "day4")
+            res.render("day_forecast", {day: day4});
+
+        else if(day === "day5")
+            res.render("day_forecast", {day: day5});
+        
+        res.render("day_forecast", {day: day6});
 });
 
 app.get("/pressure_map", function(req, res){
@@ -369,6 +390,18 @@ app.get("/temp_map", function(req, res){
 
 app.get("/wind_map", function(req, res){
     res.render("wind_map");
+});
+
+app.get("/climate_map", function(req, res){
+    res.render("climate_map");
+});
+
+app.get("/cloud_map", function(req, res){
+    res.render("cloud_map");
+});
+
+app.get("/country_map", function(req, res){
+    res.render("country_map");
 });
 
 app.get("*", function(req, res){
