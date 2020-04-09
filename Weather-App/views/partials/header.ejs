@@ -9,8 +9,18 @@
 		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="/styles2.css">
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		
+		<script>
+			$( '.title.ml-5 .nav.justify-content-around.flex-column.flex-sm-row a' ).on( 'click', function () {
+				$( '.title.ml-5 .nav.justify-content-around.flex-column.flex-sm-row' ).find( 'a.active' ).removeClass( 'active' );
+				$( this ).addClass( 'active' );
+			});
+		</script>
+		
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
 	</head>
+
+	
 	
 	<body>
 		
@@ -22,10 +32,10 @@
 						<a class="nav-link a_modify" href="/home">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active a_modify" href="/day_weather">Current Weather</a>
+						<a class="nav-link a_modify" href="/day_weather">Current Weather</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active a_modify" href="/index">Forecast</a>
+						<a class="nav-link a_modify" href="/index">Forecast</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link a_modify" href="/country_map">Maps</a>

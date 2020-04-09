@@ -1,7 +1,7 @@
 var express     =   require("express");
 var app         =   express();
 var bodyParser  =   require("body-parser");
-var request     =   require("request")
+var request     =   require("request");
 
 
 app.use(express.static("public"));
@@ -32,7 +32,6 @@ app.get("/", function(req, res){
 app.get("/compare_form",function(req,res){
     res.render("compare_form")
 })
-
 
 app.get("/comparison",function(req,res){
 
@@ -214,9 +213,10 @@ var day1=[], day2=[], day3=[], day4=[], day5=[], day6=[];
 var count_day1, count_day6;
 
 app.get("/index", function(req, res){
-    if(req.query.place){
+
+    if(req.query.place)
         place = req.query.place;
-    }
+    
     var url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + place + '&appid=8e92bda0f95b3b0228d1a57fcc94c9ea&units=metric';
     request(url, function(error,response,body){
         
@@ -244,15 +244,15 @@ app.get("/index", function(req, res){
             }
             count_day6 = 8 - count_day1;
 
-            for(var i=0; i<count_day1; i++){
-                day1[i] = data.list[i];
-            }
-
             for(var i=0; i<40; i++){
                 data.list[i].dt = all_dates[i];
                 data.list[i].time = all_times[i];
                 data.list[i].day = all_days[i];
                 data.list[i].icon_url = 'http://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png';
+            }
+            
+            for(var i=0; i<count_day1; i++){
+                day1[i] = data.list[i];
             }
 
             for(var i=0; i<8; i++){
@@ -291,6 +291,7 @@ app.get("/day_weather", function(req, res){
         place = req.query.place;
     }
     var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + place + '&appid=48164502b664fb28643399e9f69d1016&units=metric';
+    var lon, lat, obj = {};
     
     request(url, function(error, response, body){
         if(!error && response.statusCode == 200){
@@ -311,6 +312,11 @@ app.get("/day_weather", function(req, res){
             var sunset = data.sys.sunset + data.timezone;
             var wind_deg = data.wind.deg;
             var dt = data.dt + data.timezone;
+            lon = data.coord.lon;
+            lat = data.coord.lat;
+
+            var uv_url = "http://api.openweathermap.org/data/2.5/uvi?appid=8e92bda0f95b3b0228d1a57fcc94c9ea&lat=" + lat + "&lon=" + lon;
+            var uv_obj={};
 
             date = new Date(sunrise * 1000); 
             //console.log("New date: " + date);
@@ -328,7 +334,7 @@ app.get("/day_weather", function(req, res){
             date = String(date);
             date = date.slice(0, 15);
 
-            var obj = {
+            obj = {
                 place: place,
                 icon_url: icon_url,
                 cond: cond,
@@ -347,56 +353,84 @@ app.get("/day_weather", function(req, res){
                 date: date,
                 time: time
             };
-            res.render("day_weather", obj);
         }
         else{
             console.log("Error");
         }
+
+        request(uv_url, function(error, response, body){
+            if(!error && response.statusCode == 200){
+                var uv_data = JSON.parse(body);
+                var uv = uv_data.value;
+                obj.uv = uv;
+
+                res.render("day_weather", obj);
+            }
+            else {
+                console.log("UV API error");
+            }
+        });
     }); 
 });
 
 app.get("/day_forecast/:day", function(req, res){
 
-        day = req.params.day;
-        if(day === "day1")
-            res.render("day_forecast", {day: day1});
+        var part_day = req.params.day;
+        if(part_day === "day1"){
+            res.render("day_forecast", {day: day1, place: place});
+        }
 
-        else if(day === "day2")
-            res.render("day_forecast", {day: day2});
+        else if(part_day === "day2")
+            res.render("day_forecast", {day: day2, place: place});
         
-        else if(day === "day3")
-            res.render("day_forecast", {day: day3});
+        else if(part_day === "day3")
+            res.render("day_forecast", {day: day3, place: place});
         
-        else if(day === "day4")
-            res.render("day_forecast", {day: day4});
+        else if(part_day === "day4")
+            res.render("day_forecast", {day: day4, place: place});
 
-        else if(day === "day5")
-            res.render("day_forecast", {day: day5});
+        else if(part_day === "day5")
+            res.render("day_forecast", {day: day5, place: place});
         
-        res.render("day_forecast", {day: day6});
-});
-
-app.get("/pressure_map", function(req, res){
-    res.render("pressure_map");
-});
-
-app.get("/rain_map", function(req, res){
-    res.render("rain_map");
-});
-
-app.get("/temp_map", function(req, res){
-    res.render("temp_map");
-});
-
-app.get("/wind_map", function(req, res){
-    res.render("wind_map");
+        res.render("day_forecast", {day: day6, place: place});
 });
 
 app.get("/climate_map", function(req, res){
     res.render("climate_map");
 });
 
-app.get("/cloud_map", function(req, res){
+app.get("/climate_map/pressure_map", function(req, res){
+    res.render("pressure_map");
+});
+
+app.get("/climate_map/rain_map", function(req, res){
+    res.render("rain_map");
+});
+
+app.get("/climate_map/temp_map", function(req, res){
+
+    var url = "https://tile.openweathermap.org/map/temp_new/100/3/2.png?appid=48164502b664fb28643399e9f69d1016";
+    request(url, function(error, response, body){
+        console.log("Error: "+error);
+        console.log("SC: "+response.statusCode);
+        if(!error && response.statusCode == 200){
+            obj = {
+                body: body
+            };
+            console.log("Working");
+            res.render("temp_map", obj);
+        }
+        else{
+            console.log("Error");
+        }
+    });
+});
+
+app.get("/climate_map/wind_map", function(req, res){
+    res.render("wind_map");
+});
+
+app.get("/climate_map/cloud_map", function(req, res){
     res.render("cloud_map");
 });
 

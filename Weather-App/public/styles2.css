@@ -311,6 +311,21 @@ div.row:hover div.hidden {
     margin-right: 20px; 
 }
 
+.forecast-container .forecast .forecast-content-day-forecast {
+    text-align: center;
+}
+
+.forecast-container .forecast .forecast-content-day-forecast .time {
+    height: 250px;
+    text-align: center;
+}
+
+.forecast-container .forecast .forecast-content-day-forecast .time .degree {
+    font-size: 24px;
+    color: white;
+    font-weight: 600;
+}
+
 .forecast-container .forecast.today span img {
     margin-right: 5px;
     vertical-align: middle; 
@@ -333,7 +348,13 @@ div.row:hover div.hidden {
 .forecast-container .forecast .forecast-content .degree {
     font-size: 24px;
     color: white;
-    font-weight: 700; 
+    font-weight: 600; 
+}
+
+.forecast-container .forecast .forecast-content-day-forecast .degree {
+    font-size: 24px;
+    color: white;
+    font-weight: 600; 
 }
 
 .forecast-container .forecast .forecast-content small {
@@ -408,3 +429,15 @@ li {
     animation-name: trans;
     animation-duration: 1s;
 }*/
+
+.uvIcon {
+    margin: 0px;
+    height: 60px;
+    width: 100%;
+
+}
+
+iframe {
+    height: 90%;
+    width: 90%;
+}
