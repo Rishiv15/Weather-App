@@ -1,6 +1,24 @@
 <%- include ('./partials/header') %>
 
+<script>
+    $(document).alert();
+    $(".alert").alert('close');
+</script>
+
 <div class="container">
+
+    <a href="/alerts">
+        <% if(alerts[0]){ %>
+            <% for(var i=0; i<num_alerts; i++){ %>
+                <div class="alert alert-warning alert-dismissible fade show alerts" role="alert">
+                    <%= alerts[i].title %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+            <% } %>
+        <% } %>
+    </a>
 
     <div class="container">
         <form action="/day_weather", method="GET">

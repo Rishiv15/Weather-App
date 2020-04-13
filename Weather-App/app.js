@@ -211,6 +211,7 @@ var date1, timezone, time;
 var data;
 var day1=[], day2=[], day3=[], day4=[], day5=[], day6=[];
 var count_day1, count_day6;
+var alerts_data, alerts_list, num;
 
 app.get("/index", function(req, res){
 
@@ -236,6 +237,8 @@ app.get("/index", function(req, res){
                 all_days[i] = time.slice(0, 3);
                 all_dates[i] = time.slice(5, 11);
             }
+            var lat = data.city.coord.lat;
+            var lon = data.city.coord.lon;
 
             count_day1 = 0;
             for(var i=0; i<all_days.length; i++){
@@ -277,13 +280,33 @@ app.get("/index", function(req, res){
                 count_day1: count_day1,
                 count_day6: count_day6
             };
-            res.render("index", obj);
         }
         else{
             console.log("Error");
         }
+
+        var alerts_url = "https://api.weatherbit.io/v2.0/alerts?lat=" + lat + "&lon=" + lon + "&key=ef82eaf62ed2480a8250b65fa165efd5";
+        request(alerts_url, function(error, response, body){
+            if(!error && response.statusCode == 200){
+                alerts_data = JSON.parse(body);
+                alerts_list = [];
+                num = alerts_data.alerts.length;
+                if(num){
+                    for(var i=0; i<num; i++)
+                        alerts_list[i] = alerts_data.alerts[i];
+                }
+                obj.alerts = alerts_list
+                obj.num_alerts = num;
+                res.render("index", obj);
+            }
+            else{
+                console.log("Error in alerts");
+            }
+        });
     });
 });
+
+//Weatherbit api key = ef82eaf62ed2480a8250b65fa165efd5
 
 app.get("/day_weather", function(req, res){
 
@@ -316,7 +339,7 @@ app.get("/day_weather", function(req, res){
             lat = data.coord.lat;
 
             var uv_url = "http://api.openweathermap.org/data/2.5/uvi?appid=8e92bda0f95b3b0228d1a57fcc94c9ea&lat=" + lat + "&lon=" + lon;
-            var uv_obj={};
+            var alerts_url = "https://api.weatherbit.io/v2.0/alerts?lat=" + lat + "&lon=" + lon + "&key=ef82eaf62ed2480a8250b65fa165efd5";
 
             date = new Date(sunrise * 1000); 
             //console.log("New date: " + date);
@@ -358,16 +381,36 @@ app.get("/day_weather", function(req, res){
             console.log("Error");
         }
 
+        var uv;
         request(uv_url, function(error, response, body){
             if(!error && response.statusCode == 200){
                 var uv_data = JSON.parse(body);
-                var uv = uv_data.value;
+                uv = uv_data.value;
                 obj.uv = uv;
-
-                res.render("day_weather", obj);
+                console.log("1");
             }
             else {
                 console.log("UV API error");
+            }
+        });
+        
+
+        request(alerts_url, function(error, response, body){
+            if(!error && response.statusCode == 200){
+                alerts_data = JSON.parse(body);
+                alerts_list = [];
+                num = alerts_data.alerts.length;
+                if(num){
+                    for(var i=0; i<num; i++)
+                        alerts_list[i] = alerts_data.alerts[i];
+                }
+                obj.alerts = alerts_list
+                obj.num_alerts = num;
+                console.log("2");
+                res.render("day_weather", obj);
+            }
+            else{
+                console.log("Error in alerts");
             }
         });
     }); 
@@ -395,13 +438,59 @@ app.get("/day_forecast/:day", function(req, res){
         res.render("day_forecast", {day: day6, place: place});
 });
 
+app.get("/alerts", function(req, res){
+    obj = {
+        alerts: alerts_list
+    };
+    res.render("alerts", obj);
+});
+
+
 app.get("/climate_map", function(req, res){
+
+
     res.render("climate_map");
 });
 
 app.get("/climate_map/pressure_map", function(req, res){
-    res.render("pressure_map");
+
+    var url = "https://tile.openweathermap.org/map/pressure_new/100/3/2.png?appid=48164502b664fb28643399e9f69d1016";
+    request(url, function(error, response, body){
+        console.log("Error: "+error);
+        console.log("SC: "+response.statusCode);
+        if(!error && response.statusCode == 200){
+
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: -34.397, lng: 150.644},
+                    zoom: 8
+                });
+            }
+            obj = {
+                body: body,
+                map:map
+            };
+            console.log("Working");
+            res.render("pressure_map", obj);
+        }
+        else{
+            console.log("Error");
+        }
+    });
 });
+
+/*Plan: Free
+500 calls/day
+500 historical calls/day (trial)
+1 month historical
+16 day forecasts
+48 hour forecasts (trial)
+Air Quality / Energy API (trial)
+Non-Commercial use only
+95.0% Uptime
+Data update delay: 1 hour
+Price: Free*/
 
 app.get("/climate_map/rain_map", function(req, res){
     res.render("rain_map");
@@ -414,8 +503,17 @@ app.get("/climate_map/temp_map", function(req, res){
         console.log("Error: "+error);
         console.log("SC: "+response.statusCode);
         if(!error && response.statusCode == 200){
+
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: -34.397, lng: 150.644},
+                    zoom: 8
+                });
+            }
             obj = {
-                body: body
+                body: body,
+                map:map
             };
             console.log("Working");
             res.render("temp_map", obj);

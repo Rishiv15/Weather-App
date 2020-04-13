@@ -430,11 +430,20 @@ li {
     animation-duration: 1s;
 }*/
 
+.alerts {
+    font-style: inherit;
+    font-size: 1rem;
+    font-weight: inherit;
+}
+
 .uvIcon {
     margin: 0px;
     height: 60px;
     width: 100%;
+}
 
+#map {
+    height: 100%;
 }
 
 iframe {
