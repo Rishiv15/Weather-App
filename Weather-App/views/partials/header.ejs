@@ -12,43 +12,46 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-		
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 		<script>
 			$( '.title.ml-5 .nav.justify-content-around.flex-column.flex-sm-row a' ).on( 'click', function () {
 				$( '.title.ml-5 .nav.justify-content-around.flex-column.flex-sm-row' ).find( 'a.active' ).removeClass( 'active' );
 				$( this ).addClass( 'active' );
 			});
+			 
 		</script>
 		
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
 	</head>
-
-	
 	
 	<body>
 		
 		<div class="site-header">
-			<div class="title ml-5">
-				<h3 class="site-title pt-2"><a href="/about"><i class="fas fa-cloud"></i> The Weatherists</a></h1>
-				<ul class="nav justify-content-around flex-column flex-sm-row" style="padding-top: 14px;">
-					<li class="nav-item">
-						<a class="nav-link a_modify" href="/home">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link a_modify" href="/day_weather">Current Weather</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link a_modify" href="/index">Forecast</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link a_modify" href="/country_map">Maps</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link a_modify" href="#">Login</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link a_modify" href="#">Register</a>
-					</li>
-				</ul> 
+			<div class="gif">
+				<div id="o">
+					<div class="title ml-5" style="opacity: 1;">
+						<h3 class="site-title pt-2" style="opacity: 1;"><a href="/about"><i class="fas fa-cloud"></i> The Weatherists</a></h1>
+						<ul class="nav justify-content-around flex-column flex-sm-row" style="padding-top: 14px; opacity: 1;">
+							<li class="nav-item">
+								<a class="nav-link a_modify" href="/home">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link a_modify" href="/day_weather">Current Weather</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link a_modify" href="/index">Forecast</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link a_modify" href="/country_map">Maps</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link a_modify" href="#">Login</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link a_modify" href="#">Register</a>
+							</li>
+						</ul> 
+					</div>
+				</div>
 			</div>
 		</div>

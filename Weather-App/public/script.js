@@ -1,6 +1,13 @@
+// $.getScript("../app.js", function(){
+//     console.log(chart_temp);
+// });
+
 var a = document.getElementsByClassName("num");
 var b = document.getElementsByClassName("degree");
 var c = document.getElementsByTagName("small");
+
+//import { pass_cond } from './app.js';
+//let cond = pass_cond();
 
 for(var i=0; i<a.length; i++)
 {
@@ -33,6 +40,8 @@ for(var i=0; i<c.length; i++)
     });
 }
 
+
+
 /*function main() {
   const canvas = document.querySelector("#glCanvas");
   // Initialize the GL context
@@ -61,8 +70,11 @@ function search_bar()
         if(event.which === 13)
             console.log($("input").val());
     });
+
 }
 search_bar();
+
+//$(".gif").css("width", "100%");
 
 function fadeIn()
 {
@@ -72,6 +84,46 @@ function fadeIn()
 }
 fadeIn();
 
+// var ctx = document.getElementById('chart').getContext('2d');
+// var xlabels = [];
+
+// var myChart = new Chart(ctx, {
+//     type: 'bar',
+    
+//     data: {
+//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//         datasets: [{
+//             label: 'Temperature over the week',
+//             data: [12, 19, 3, 5, 2, 3],
+//             backgroundColor: [
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(255, 206, 86, 0.2)',
+//                 'rgba(75, 192, 192, 0.2)',
+//                 'rgba(153, 102, 255, 0.2)',
+//                 'rgba(255, 159, 64, 0.2)'
+//             ],
+//             borderColor: [
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(255, 206, 86, 1)',
+//                 'rgba(75, 192, 192, 1)',
+//                 'rgba(153, 102, 255, 1)',
+//                 'rgba(255, 159, 64, 1)'
+//             ],
+//             borderWidth: 1
+//         }]
+//     },
+//     options: {
+//         scales: {
+//             yAxes: [{
+//                 ticks: {
+//                     beginAtZero: true
+//                 }
+//             }]
+//         }
+//     }
+// });
 /*$(".forecast").hover
 (
     function()

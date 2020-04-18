@@ -2,11 +2,49 @@ var express     =   require("express");
 var app         =   express();
 var bodyParser  =   require("body-parser");
 var request     =   require("request");
-
+var mongo       =   require("mongodb");
+var mongoose    =   require("mongoose");
+var jsdom       =   require('jsdom');
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+
+// const { JSDOM } = jsdom;
+// const { window } = new JSDOM();
+// const { document } = (new JSDOM('')).window;
+// global.document = document;
+// var $ = require('jQuery')(window);
+
+mongoose.connect("mongodb://localhost:27017/weather", {useNewUrlParser: true, useUnifiedTopology: true});
+
+var weatSchema = new mongoose.Schema({
+    temp: Number,
+    humidity: Number
+});
+var weather = mongoose.model("weather", weatSchema);
+//if(weather) console.log("DB working");
+//else console.log("DB not");
+
+// weather.create({
+//     temp: 34,
+//     humidity: 87
+// }, function(err, w){
+//     if(err) console.log("Error");
+//     else console.log(w);
+// });
+
+/*var we = new weather ({
+    temp: 34,
+    humidity: 56
+});
+
+we.save(function(err, weat){
+    if(err)
+        console.log("Error in saving to db: "+err);
+    else
+        console.log(weat);
+});*/
 
 app.get("/", function(req, res){
     res.render("home");
@@ -110,14 +148,11 @@ app.get("/comparison",function(req,res){
         console.log(flag1);
         console.log("Dcity1: ");
         console.log(dcity1);
-
-        
     }
     else{
         console.log('Api1 failed');
     }
     
-
    });
   
    console.log(dcity1);
@@ -212,6 +247,7 @@ var data;
 var day1=[], day2=[], day3=[], day4=[], day5=[], day6=[];
 var count_day1, count_day6;
 var alerts_data, alerts_list, num;
+var chart_temp = [];
 
 app.get("/index", function(req, res){
 
@@ -269,6 +305,22 @@ app.get("/index", function(req, res){
                 day6[i] = data.list[32 + count_day1 + i];
             }
 
+            if(day1[0].main.temp){
+                chart_temp[0] = day1[0].main.temp;
+                chart_temp[1] = day2[0].main.temp;
+                chart_temp[2] = day3[0].main.temp;
+                chart_temp[3] = day4[0].main.temp;
+                chart_temp[4] = day5[0].main.temp;
+            }
+
+            else{
+                chart_temp[0] = day2[0].main.temp;
+                chart_temp[1] = day3[0].main.temp;
+                chart_temp[2] = day4[0].main.temp;
+                chart_temp[3] = day5[0].main.temp;
+                chart_temp[4] = day6[0].main.temp;
+            }
+
             obj = {
                 place: place,
                 day1: day1,
@@ -307,7 +359,7 @@ app.get("/index", function(req, res){
 });
 
 //Weatherbit api key = ef82eaf62ed2480a8250b65fa165efd5
-
+var cond;
 app.get("/day_weather", function(req, res){
 
     if(req.query.place){
@@ -326,7 +378,7 @@ app.get("/day_weather", function(req, res){
             var temp = data["main"]["temp"];
             var coord = data["coord"];
             var icon_url = 'http://openweathermap.org/img/wn/' + data["weather"][0]["icon"] + '@2x.png'; 
-            var cond = data["weather"][0]["main"];
+            cond = data["weather"][0]["main"];
             var temp_feels = data.main.feels_like;
             var temp_min = data.main.temp_min;
             var temp_max = data.main.temp_max;
@@ -342,9 +394,7 @@ app.get("/day_weather", function(req, res){
             var alerts_url = "https://api.weatherbit.io/v2.0/alerts?lat=" + lat + "&lon=" + lon + "&key=ef82eaf62ed2480a8250b65fa165efd5";
 
             date = new Date(sunrise * 1000); 
-            //console.log("New date: " + date);
             utcString = date.toUTCString(); 
-           // console.log("utc string: " + utcString);
             sunrise = utcString.slice(-11, -4);
             dt = new Date(dt * 1000);
             dt = dt.toUTCString();
@@ -459,6 +509,7 @@ app.get("/climate_map/pressure_map", function(req, res){
         console.log("Error: "+error);
         console.log("SC: "+response.statusCode);
         if(!error && response.statusCode == 200){
+            console.log(body);
 
             var map;
             function initMap() {
@@ -524,6 +575,10 @@ app.get("/climate_map/temp_map", function(req, res){
     });
 });
 
+/*export function pass_cond(cond){
+    return cond;
+}*/
+
 app.get("/climate_map/wind_map", function(req, res){
     res.render("wind_map");
 });
@@ -535,6 +590,8 @@ app.get("/climate_map/cloud_map", function(req, res){
 app.get("/country_map", function(req, res){
     res.render("country_map");
 });
+
+module.exports = chart_temp; 
 
 app.get("*", function(req, res){
     res.send("Page not found");

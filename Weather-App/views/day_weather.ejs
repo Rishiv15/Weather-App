@@ -146,23 +146,31 @@
                     </div>
                 </div>
 
-                <div class="forecast">
-                    <div class="forecast-header">
-                        <div class="day">UV Index</div>
-                    </div>
-                    <div class="forecast-content pt-0">
-                        <div class="degree pt-3">	
-                            <div class="forecast-icon">
-                                <img src="https://image.flaticon.com/icons/svg/1808/1808675.svg" class="uvIcon pt-1" alt="">
+                <% if(uv){ %>
+                    <div class="forecast">
+                        <div class="forecast-header">
+                            <div class="day">UV Index</div>
+                        </div>
+                        <div class="forecast-content pt-0">
+                            <div class="degree pt-3">	
+                                <div class="forecast-icon">
+                                    <img src="https://image.flaticon.com/icons/svg/1808/1808675.svg" class="uvIcon pt-1" alt="">
+                                </div>
+                                <div class="num pt-2"><%= uv %></div>
                             </div>
-                            <div class="num pt-2"><%= uv %></div>
                         </div>
                     </div>
-                </div>
+                <% } %>
 
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    if( cond == "Clear" ){
+        $(".gif").css("background-image", "url('https://i2.wp.com/css-tricks.com/wp-content/uploads/2012/10/animated-rain.gif')");
+        console.log("W");
+    }
+</script>
 <%- include ('./partials/footer') %>
