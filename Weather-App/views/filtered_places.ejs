@@ -1,0 +1,10 @@
+<%- include ('./partials/header') %>
+
+    <% if(ret){ %>
+        <% for(var i=0; i<ret.length; i++){ %>
+            <%= ret[i].place %>
+            <%= ret[i].temp %>
+        <% } %>
+    <% } %>
+
+<%- include ('./partials/footer.ejs') %>

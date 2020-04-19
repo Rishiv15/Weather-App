@@ -110,11 +110,19 @@ input {
     float: right;
 }
 
+.hid {
+    display: none;
+}
+
 .btnn {
     background: none;
     height: 27px;
     border: none;
     float: right;
+}
+
+.w {
+    width: 20px;
 }
 
 i.fa-search {
@@ -190,6 +198,16 @@ a:hover {
     background: url("https://i2.wp.com/css-tricks.com/wp-content/uploads/2012/10/example-day.jpg");
     width: 100%;
     background-repeat: no-repeat;
+}
+
+#temp_map {
+    background: url("https://tile.openweathermap.org/map/temp_new/100/3/2.png?appid=48164502b664fb28643399e9f69d1016");
+    width: 100%;
+    height: 200px;
+}
+
+.view_more {
+    float: right;
 }
 
 .gif {

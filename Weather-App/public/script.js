@@ -40,8 +40,6 @@ for(var i=0; i<c.length; i++)
     });
 }
 
-
-
 /*function main() {
   const canvas = document.querySelector("#glCanvas");
   // Initialize the GL context
@@ -84,46 +82,53 @@ function fadeIn()
 }
 fadeIn();
 
-// var ctx = document.getElementById('chart').getContext('2d');
-// var xlabels = [];
+var ctx = document.getElementById('chart').getContext('2d');
+var x0 = $(".hid .0").text();
+var x1 = $(".hid .1").text();
+var x2 = $(".hid .2").text();
+var x3 = $(".hid .3").text();
+var x4 = $(".hid .4").text();
+var d0 = $(".hid .100").text();
+var d1 = $(".hid .101").text();
+var d2 = $(".hid .102").text();
+var d3 = $(".hid .103").text();
+var d4 = $(".hid .104").text();
 
-// var myChart = new Chart(ctx, {
-//     type: 'bar',
+var myChart = new Chart(ctx, {
+    type: 'bar',
     
-//     data: {
-//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//         datasets: [{
-//             label: 'Temperature over the week',
-//             data: [12, 19, 3, 5, 2, 3],
-//             backgroundColor: [
-//                 'rgba(255, 99, 132, 0.2)',
-//                 'rgba(54, 162, 235, 0.2)',
-//                 'rgba(255, 206, 86, 0.2)',
-//                 'rgba(75, 192, 192, 0.2)',
-//                 'rgba(153, 102, 255, 0.2)',
-//                 'rgba(255, 159, 64, 0.2)'
-//             ],
-//             borderColor: [
-//                 'rgba(255, 99, 132, 1)',
-//                 'rgba(54, 162, 235, 1)',
-//                 'rgba(255, 206, 86, 1)',
-//                 'rgba(75, 192, 192, 1)',
-//                 'rgba(153, 102, 255, 1)',
-//                 'rgba(255, 159, 64, 1)'
-//             ],
-//             borderWidth: 1
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             yAxes: [{
-//                 ticks: {
-//                     beginAtZero: true
-//                 }
-//             }]
-//         }
-//     }
-// });
+    data: {
+        labels: [d0, d1, d2, d3, d4],
+        datasets: [{
+            label: 'Temperature over the week',
+            data: [x0, x1, x2, x3, x4],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 /*$(".forecast").hover
 (
     function()

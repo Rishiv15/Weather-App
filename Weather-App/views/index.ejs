@@ -170,6 +170,13 @@
         </div>
     </div>
 
+    <ul class="hid">
+        <% for(var i=0; i<chart_temp.length; i++){ %>
+            <li class="<%= i %>"><%= chart_temp[i] %></li>
+            <li class="<%= i+100 %>"><%= days_chart[i] %></li>
+        <% } %>
+    </ul>
+
     <canvas id="chart" width="50" height="20"></canvas>
 
 		

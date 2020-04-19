@@ -4,7 +4,6 @@ var bodyParser  =   require("body-parser");
 var request     =   require("request");
 var mongo       =   require("mongodb");
 var mongoose    =   require("mongoose");
-var jsdom       =   require('jsdom');
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -22,17 +21,30 @@ var weatSchema = new mongoose.Schema({
     temp: Number,
     humidity: Number
 });
+
 var weather = mongoose.model("weather", weatSchema);
-//if(weather) console.log("DB working");
-//else console.log("DB not");
+// if(weather) console.log("DB working");
+// else console.log("DB not");
 
 // weather.create({
 //     temp: 34,
 //     humidity: 87
 // }, function(err, w){
-//     if(err) console.log("Error");
+//     if(err) console.log("Error: "+err);
 //     else console.log(w);
 // });
+
+var tourSchema = new mongoose.Schema({
+    place: String,
+    image: String,
+    temp: Number,
+    humidity: Number,
+    landform: String,
+    rain: Number,
+    distance: Number
+});
+
+var tourism = mongoose.model("tourism", tourSchema);
 
 /*var we = new weather ({
     temp: 34,
@@ -63,12 +75,10 @@ app.get("/", function(req, res){
     });
 }
     res.render("home");
-});
-  */ 
- 
-  
+});*/ 
+
 app.get("/compare_form",function(req,res){
-    res.render("compare_form")
+    res.render("compare_form");
 })
 
 app.get("/comparison",function(req,res){
@@ -232,6 +242,145 @@ app.get("/comparison",function(req,res){
 */
  });
 
+// tourism.create(
+//     {
+//         place: "Honolulu",
+//         distance: 140,
+//         temp: 45,
+//         humidity: 56,
+//         landform: "sm"
+//     }, function(err, place){
+//         if(err){
+//             console.log("Error creating place");
+//         }
+// });
+
+var filter;
+app.get("/tourism", function(req, res){
+
+    tourism.find({}, function(err, tour){
+        if(err){
+            console.log("Error: "+err);
+        }
+        else{
+            res.render("tourism", {tour: tour});
+        }
+    });
+});
+
+app.get("/tourism/filtered_places", function(req, res){
+
+    var landform, temp, humidity, arr = {};
+    var l = 0, t = 0, h = 0;
+    var count = 0;
+    if(req.query.tour)
+        filter = req.query.tour;
+
+    if(req.query.tour.landform){
+        landform = req.query.tour.landform;
+        arr.landform = landform;
+        l = 1;
+    }
+        
+    if(req.query.tour.hum){
+        humidity = req.query.tour.hum;
+        arr.humidity = humidity;
+        h = 1;
+    }
+        
+    if(req.query.tour.temp){
+        temp = req.query.tour.temp;
+        arr.temp = temp;
+        t = 1;
+    }
+
+    if(l == 1 && h == 1 && t == 1){
+        tourism.find({landform: landform, humidity: humidity, temp: temp}, function(err, ret){
+            if(err){
+                console.log("error");
+            }
+            else{
+                res.render("filtered_places", {ret: ret});
+            }
+        });
+    }
+    else if(l == 1 && h == 1 && t == 0){
+        tourism.find({landform: landform, humidity: humidity}, function(err, ret){
+            if(err){
+                console.log("error");
+            }
+            else{
+                res.render("filtered_places", {ret: ret});
+            }
+        });
+    }
+    else if(l == 1 && h == 0 && t == 1){
+        tourism.find({landform: landform, temp: temp}, function(err, ret){
+            if(err){
+                console.log("error");
+            }
+            else{
+                res.render("filtered_places", {ret: ret});
+            }
+        });
+    }
+    else if(l == 0 && h == 1 && t == 1){
+        tourism.find({temp: temp, humidity: humidity}, function(err, ret){
+            if(err){
+                console.log("error");
+            }
+            else{
+                res.render("filtered_places", {ret: ret});
+            }
+        });
+    }
+    else if(l == 1 && h == 0 && t == 0){
+        tourism.find({landform: landform}, function(err, ret){
+            if(err){
+                console.log("error");
+            }
+            else{
+                res.render("filtered_places", {ret: ret});
+            }
+        });
+    }
+    else if(l == 0 && h == 1 && t == 0){
+        tourism.find({humidity: humidity}, function(err, ret){
+            if(err){
+                console.log("error");
+            }
+            else{
+                res.render("filtered_places", {ret: ret});
+            }
+        });
+    }
+    else if(l == 0 && h == 0 && t == 1){
+        tourism.find({temp: temp}, function(err, ret){
+            if(err){
+                console.log("error");
+            }
+            else{
+                res.render("filtered_places", {ret: ret});
+            }
+        });
+    }
+    else{
+        res.send("Form submitted empty");
+    }
+});
+
+app.get("/tourism/:id", function(req, res){
+
+    tourism.findById(req.params.id, function(err, found){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render("part_place", {tour: found});
+        }
+    });
+});
+
 app.get("/about", function(req, res){
     res.render("about");
 });
@@ -248,6 +397,7 @@ var day1=[], day2=[], day3=[], day4=[], day5=[], day6=[];
 var count_day1, count_day6;
 var alerts_data, alerts_list, num;
 var chart_temp = [];
+var days_chart = [];
 
 app.get("/index", function(req, res){
 
@@ -311,6 +461,11 @@ app.get("/index", function(req, res){
                 chart_temp[2] = day3[0].main.temp;
                 chart_temp[3] = day4[0].main.temp;
                 chart_temp[4] = day5[0].main.temp;
+                days_chart[0] = day1[0].day;
+                days_chart[1] = day2[0].day;
+                days_chart[2] = day3[0].day;
+                days_chart[3] = day4[0].day;
+                days_chart[4] = day5[0].day;
             }
 
             else{
@@ -319,6 +474,11 @@ app.get("/index", function(req, res){
                 chart_temp[2] = day4[0].main.temp;
                 chart_temp[3] = day5[0].main.temp;
                 chart_temp[4] = day6[0].main.temp;
+                days_chart[0] = day2[0].day;
+                days_chart[1] = day3[0].day;
+                days_chart[2] = day4[0].day;
+                days_chart[3] = day5[0].day;
+                days_chart[4] = day6[0].day;
             }
 
             obj = {
@@ -330,7 +490,9 @@ app.get("/index", function(req, res){
                 day5: day5,
                 day6: day6,
                 count_day1: count_day1,
-                count_day6: count_day6
+                count_day6: count_day6,
+                chart_temp: chart_temp,
+                days_chart: days_chart
             };
         }
         else{
