@@ -169,9 +169,10 @@ h1 {
 }
 
 a:hover {
-    color: #009ad8;
+    color: black;
     text-decoration: none;
 }
+
 .navitem{
     padding-top:auto;
     padding-left: auto;
@@ -192,11 +193,9 @@ a:hover {
 }
 
 .site-header {
-    height: 115px;
-    background-color: #262936;
     margin-bottom: 25px;
     background: url("https://i2.wp.com/css-tricks.com/wp-content/uploads/2012/10/example-day.jpg");
-    width: 100%;
+    background-size: 2000px 110px;
     background-repeat: no-repeat;
 }
 
@@ -211,10 +210,9 @@ a:hover {
 }
 
 .gif {
-    
     width: 100%;
     height: 115px;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .navbar-nav {
@@ -334,7 +332,6 @@ div.row:hover div.hidden {
 
 .numCity {
     font-size: 20px;
-    float: right;
     display: inline-block;
     vertical-align: middle;
 }
@@ -450,17 +447,6 @@ td, th {
     padding-top: 0rem;
 }
 
-/*@keyframes trans {
-    0% {right: 0px};
-    25% {right: 5px};
-    50% {right: 10px};
-    75% {right: 15px};
-}
-
-li {
-    animation-name: trans;
-    animation-duration: 1s;
-}*/
 
 .alerts {
     font-style: inherit;

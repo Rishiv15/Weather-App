@@ -26,11 +26,13 @@
             <input class="mb-4" type="search" id="sear" name="place" placeholder="Search for a city">
         </form>
     </div>
+
+    <p class="gif_cond" style="display: none;"><%= gif_cond %></p>
     
     <h2 class="ml-3 mb-0" style="font-size: 1.2rem;"><%= place[0].toUpperCase()+place.slice(1) %>, <%= date %> <%= time %></h2>
     <hr class="new1" >
-    <h3 class="ml-3 mr-0" style="font-size: 1.5rem; display: table;"><%= cond %></h3>
-    <img class="icons" style="float: right; margin-right: 600px; width: auto;" src="<%= icon_url %>" alt="">
+    <h3 class="ml-3 mr-0 cond" style="font-size: 1.5rem; display: table;"><%= cond[0].toUpperCase()+cond.slice(1) %></h3>
+    <img class="icons" style="float: left; margin-right: 600px; width: auto;" src="<%= icon_url %>" alt="">
     
     <div class="forecast-table">
         <div class="container">

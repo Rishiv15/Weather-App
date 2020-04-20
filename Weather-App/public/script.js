@@ -40,23 +40,31 @@ for(var i=0; i<c.length; i++)
     });
 }
 
-/*function main() {
-  const canvas = document.querySelector("#glCanvas");
-  // Initialize the GL context
-  const gl = canvas.getContext("webgl");
+$( '.title.ml-5 .nav.justify-content-around.flex-column.flex-sm-row li.nav-item a.nav-link.a_modify' ).on( 'click', function () {
+	$( '.title.ml-5 .nav.justify-content-around.flex-column.flex-sm-row' ).find( 'li.nav-item a.active' ).removeClass( 'active' );
+	$( this ).addClass( 'active' );
+});
 
-  // Only continue if WebGL is available and working
-  if (gl === null) {
-    alert("Unable to initialize WebGL. Your browser or machine may not support it.");
-    return;
-  }
+var cond = $("p.gif_cond").text();
+console.log(cond);
 
-  // Set clear color to black, fully opaque
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
-  // Clear the color buffer with specified clear color
-  gl.clear(gl.COLOR_BUFFER_BIT);
-}
-window.onload = main;*/
+if(cond === "Thunderstorm" || cond === "Drizzle" || cond ==="Rain")
+    $(".gif").css("background-image", "url('https://i2.wp.com/css-tricks.com/wp-content/uploads/2012/10/animated-rain.gif')");
+
+else if(cond === "Snow")
+    $(".gif").css("background-image", "url('https://thumbs.gfycat.com/MeekWillingGaur-max-1mb.gif')");
+
+else if(cond === "Smoke")
+    $(".gif").css("background-image", "url('https://thumbs.gfycat.com/BlackandwhiteMeekFlyingsquirrel-size_restricted.gif')");
+
+else if(cond === "Clouds")
+    $(".gif").css("background-image", "url('https://thumbs.gfycat.com/DearestUnfortunateGrebe-max-1mb.gif')");
+
+else if(cond === "Clear")
+    $(".gif").css("background-image", "url('https://i.gifer.com/JXjb.gif')");
+
+else 
+    $(".gif").css("background-image", "url('https://i.pinimg.com/originals/dc/fe/13/dcfe13ee2a8e781250651bacedcb1a85.gif')");
 
 function search_bar()
 {
@@ -83,6 +91,7 @@ function fadeIn()
 fadeIn();
 
 var ctx = document.getElementById('chart').getContext('2d');
+var ctx2 = document.getElementById('chart_hum').getContext('2d');
 var x0 = $(".hid .0").text();
 var x1 = $(".hid .1").text();
 var x2 = $(".hid .2").text();
@@ -93,6 +102,15 @@ var d1 = $(".hid .101").text();
 var d2 = $(".hid .102").text();
 var d3 = $(".hid .103").text();
 var d4 = $(".hid .104").text();
+
+var h1 = $(".hid .10").text();
+var h2 = $(".hid .11").text();
+var h3 = $(".hid .12").text();
+var h4 = $(".hid .13").text();
+var h5 = $(".hid .14").text();
+
+Chart.defaults.global.defaultFontColor = '#009ad8';
+Chart.defaults.global.defaultFontSize = 16;
 
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -117,12 +135,74 @@ var myChart = new Chart(ctx, {
                 'rgba(153, 102, 255, 1)'
             ],
             borderWidth: 1
-        }]
+        },
+        {
+            label: "Temp line graph",
+            data: [x0, x1, x2, x3, x4],
+            backgroundColor: "red",
+            fill: false,
+            type: 'line',
+            order: 2
+        }
+    ]
     },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
+    options: 
+    {
+        scales: 
+        {
+            yAxes: 
+            [{
+                ticks: 
+                {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var myChart = new Chart(ctx2, {
+    type: 'bar',
+    
+    data: {
+        labels: [d0, d1, d2, d3, d4],
+        datasets: [{
+            label: 'Humidity over the week',
+            data: [h1, h2, h3, h4, h5],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        },
+        {
+            label: "Humidity line graph",
+            data: [h1, h2, h3, h4, h5],
+            backgroundColor: "red",
+            fill: false,
+            type: 'line',
+            order: 2
+        }
+    ]
+    },
+    options: 
+    {
+        scales: 
+        {
+            yAxes: 
+            [{
+                ticks: 
+                {
                     beginAtZero: true
                 }
             }]

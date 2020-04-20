@@ -396,7 +396,7 @@ var data;
 var day1=[], day2=[], day3=[], day4=[], day5=[], day6=[];
 var count_day1, count_day6;
 var alerts_data, alerts_list, num;
-var chart_temp = [];
+var chart_temp = [], chart_hum = [];
 var days_chart = [];
 
 app.get("/index", function(req, res){
@@ -466,6 +466,11 @@ app.get("/index", function(req, res){
                 days_chart[2] = day3[0].day;
                 days_chart[3] = day4[0].day;
                 days_chart[4] = day5[0].day;
+                chart_hum[0] = day1[0].main.humidity;
+                chart_hum[1] = day2[0].main.humidity;
+                chart_hum[2] = day3[0].main.humidity;
+                chart_hum[3] = day4[0].main.humidity;
+                chart_hum[4] = day5[0].main.humidity;
             }
 
             else{
@@ -479,6 +484,11 @@ app.get("/index", function(req, res){
                 days_chart[2] = day4[0].day;
                 days_chart[3] = day5[0].day;
                 days_chart[4] = day6[0].day;
+                chart_hum[0] = day2[0].main.humidity;
+                chart_hum[1] = day3[0].main.humidity;
+                chart_hum[2] = day4[0].main.humidity;
+                chart_hum[3] = day5[0].main.humidity;
+                chart_hum[4] = day6[0].main.humidity;
             }
 
             obj = {
@@ -492,7 +502,8 @@ app.get("/index", function(req, res){
                 count_day1: count_day1,
                 count_day6: count_day6,
                 chart_temp: chart_temp,
-                days_chart: days_chart
+                days_chart: days_chart,
+                chart_hum: chart_hum
             };
         }
         else{
@@ -521,7 +532,7 @@ app.get("/index", function(req, res){
 });
 
 //Weatherbit api key = ef82eaf62ed2480a8250b65fa165efd5
-var cond;
+var cond, gif_cond;
 app.get("/day_weather", function(req, res){
 
     if(req.query.place){
@@ -540,7 +551,8 @@ app.get("/day_weather", function(req, res){
             var temp = data["main"]["temp"];
             var coord = data["coord"];
             var icon_url = 'http://openweathermap.org/img/wn/' + data["weather"][0]["icon"] + '@2x.png'; 
-            cond = data["weather"][0]["main"];
+            cond = data["weather"][0]["description"];
+            gif_cond = data.weather[0].main;
             var temp_feels = data.main.feels_like;
             var temp_min = data.main.temp_min;
             var temp_max = data.main.temp_max;
@@ -586,7 +598,8 @@ app.get("/day_weather", function(req, res){
                 wind_deg: wind_deg,
                 coord: coord,
                 date: date,
-                time: time
+                time: time,
+                gif_cond: gif_cond
             };
         }
         else{
@@ -599,7 +612,6 @@ app.get("/day_weather", function(req, res){
                 var uv_data = JSON.parse(body);
                 uv = uv_data.value;
                 obj.uv = uv;
-                console.log("1");
             }
             else {
                 console.log("UV API error");
@@ -618,7 +630,6 @@ app.get("/day_weather", function(req, res){
                 }
                 obj.alerts = alerts_list
                 obj.num_alerts = num;
-                console.log("2");
                 res.render("day_weather", obj);
             }
             else{

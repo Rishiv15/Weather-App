@@ -174,10 +174,15 @@
         <% for(var i=0; i<chart_temp.length; i++){ %>
             <li class="<%= i %>"><%= chart_temp[i] %></li>
             <li class="<%= i+100 %>"><%= days_chart[i] %></li>
+            <li class="<%= i+10 %>"><%= chart_hum[i] %></li>
         <% } %>
     </ul>
 
-    <canvas id="chart" width="50" height="20"></canvas>
+    <div class="container">
+        <canvas id="chart" width="800" height="400" class="mb-5"></canvas>
+        <canvas id="chart_hum" width="800" height="400"></canvas>
+    </div>     
+    
 
 		
 <%- include ('./partials/footer') %>
