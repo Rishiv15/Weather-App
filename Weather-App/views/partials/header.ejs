@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 		<title>Weather App</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Quicksand:300" rel="stylesheet">
 		<link rel="stylesheet" href="/styles2.css">
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -37,12 +37,21 @@
 							<li class="nav-item">
 								<a class="nav-link a_modify" href="/country_map">Maps</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link a_modify" href="#">Login</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link a_modify" href="#">Register</a>
-							</li>
+							<% if(!currentUser) { %>
+								<li class="nav-item">
+									<a class="nav-link a_modify" href="/login">Login</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link a_modify" href="/register">Register</a>
+								</li>
+							<% } else { %>
+								<li class="nav-item">
+									<div class="a_modify"> Signed in as <%= currentUser.username %></div>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link a_modify" href="/logout">Logout</a>
+								</li>
+							<% } %>
 						</ul> 
 					</div>
 				</div>
