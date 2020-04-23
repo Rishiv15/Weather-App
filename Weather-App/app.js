@@ -7,6 +7,7 @@ var mongoose    =   require("mongoose");
 var passport    =   require("passport");
 var LocalStrategy = require("passport-local");
 var User        =   require("./models/user");
+var tourism     =   require("./models/tourism")
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -50,17 +51,6 @@ var weather = mongoose.model("weather", weatSchema);
 //     else console.log(w);
 // });
 
-var tourSchema = new mongoose.Schema({
-    place: String,
-    image: String,
-    temp: Number,
-    humidity: Number,
-    landform: String,
-    rain: Number,
-    distance: Number
-});
-
-var tourism = mongoose.model("tourism", tourSchema);
 
 /*var we = new weather ({
     temp: 34,
@@ -78,6 +68,9 @@ app.get("/", function(req, res){
     res.render("home");
 });
 
+app.get("/home", function(req, res){
+    res.render("home");
+});
 /*app.get("/home", function(req, res){
     var places=["Mumbai","New York","Paris","London","Tokyo"];
     var data =[];
@@ -289,7 +282,7 @@ app.get("/tourism/filtered_places", function(req, res){
 
     var landform, temp, humidity, arr = {};
     var l = 0, t = 0, h = 0;
-    var count = 0;
+
     if(req.query.tour)
         filter = req.query.tour;
 
@@ -415,6 +408,7 @@ var count_day1, count_day6;
 var alerts_data, alerts_list, num;
 var chart_temp = [], chart_hum = [];
 var days_chart = [];
+var message;
 
 app.get("/index", function(req, res){
     if(req.query.place)
@@ -520,6 +514,7 @@ app.get("/index", function(req, res){
                 chart_temp: chart_temp,
                 days_chart: days_chart,
                 chart_hum: chart_hum
+                //message: message
             };
         }
         else{
@@ -684,10 +679,7 @@ app.get("/alerts", function(req, res){
     res.render("alerts", obj);
 });
 
-
 app.get("/climate_map", function(req, res){
-
-
     res.render("climate_map");
 });
 
@@ -796,6 +788,7 @@ app.post("/register", function(req, res){
             return res.render("register");
         }
         passport.authenticate("local")(req, res, function(){
+            //message = "Registered";
             res.redirect("/index");
         });
     });

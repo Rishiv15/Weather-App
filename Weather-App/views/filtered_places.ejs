@@ -1,10 +1,25 @@
 <%- include ('./partials/header') %>
 
-    <% if(ret){ %>
-        <% for(var i=0; i<ret.length; i++){ %>
-            <%= ret[i].place %>
-            <%= ret[i].temp %>
+   <div class="container">
+        <% if(ret){ %>
+            <% for(var i=0; i<ret.length; i++){ %>
+                
+                <div class="card text-white bg-danger">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= ret[i].place %></h5>
+                        <p class="card-text">Distance: <%= ret[i].distance %></p>
+                        <a class="btn btn-success view_more" href="/tourism/<%= ret[i]._id %>">View More Info</a>
+                    </div>
+                    <div class="card-footer text-white">
+                        <small>Last updated 3 mins ago</small>
+                    </div>
+                </div>
+                
+            <% } %>
         <% } %>
-    <% } %>
+   </div>
+    
+    
 
 <%- include ('./partials/footer.ejs') %>
