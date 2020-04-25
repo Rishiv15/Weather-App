@@ -165,9 +165,7 @@ app.get("/comparison",function(req,res){
         }
         flag1 = 1;
         
-        console.log(flag1);
-        console.log("Dcity1: ");
-        console.log(dcity1);
+        
     }
     else{
         console.log('Api1 failed');
@@ -230,11 +228,12 @@ app.get("/comparison",function(req,res){
         }
         flag2 = 1;
 
-        dcity = {
-            dcity1: dcity1,
-            dcity2: dcity2
-        };
-        
+        dcity = [
+            dcity1= dcity1,
+            dcity2= dcity2
+        ]
+        console.log(dcity[0].sunset);
+        console.log(dcity[0].sunset);
         res.render('comparison', dcity);
 
     }
