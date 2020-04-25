@@ -515,7 +515,6 @@ app.get("/index", function(req, res){
                 chart_temp: chart_temp,
                 days_chart: days_chart,
                 chart_hum: chart_hum
-                //message: message
             };
         }
         else{

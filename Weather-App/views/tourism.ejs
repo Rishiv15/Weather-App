@@ -2,7 +2,7 @@
 
     <div class="container">
 
-        <form action="/tourism/filtered_places" method="GET">
+        <form action="/tourism/filtered_places" method="GET" class="mb-3">
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <input type="text" class="form-control" name="tour[temp]" placeholder="Temperature">
@@ -18,24 +18,25 @@
         </form>
 
         
-
+        <div class="row justify-content-between pl-5">
             <% for(var i=0; i<tour.length; i++){ %>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card text-white bg-primary">
-                            <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="card text-white bg-secondary mb-5">
+                            <img class="card-img-top card-image" src="<%= tour[i].image %>" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title"><%= tour[i].place %></h5>
-                                <p class="card-text">Distance: <%= tour[i].distance %></p>
+                                <p class="card-text"><i class="fas fa-temperature-high mr-2"></i>Temperature: <%= tour[i].temp %><sup>o</sup>C</p>
+                                <p class="card-text"><i class="fas fa-tint mr-2"></i>Humidity: <%= tour[i].humidity %>%</p>
                                 <a class="btn btn-success view_more" href="/tourism/<%= tour[i]._id %>">View More Info</a>
                             </div>
                             <div class="card-footer text-white">
-                                <small>Last updated 3 mins ago</small>
+                                <small>Best Season to visit: <%= tour[i].season %></small>
                             </div>
                         </div>
                     </div>
-                </div>
             <% } %>
+        </div>
+            
 
         
         

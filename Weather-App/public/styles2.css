@@ -180,6 +180,11 @@ a:hover {
     text-decoration: none;
 }
 
+.card-image {
+    margin: 0px;
+    height: 150px;
+}
+
 .navitem{
     padding-top:auto;
     padding-left: auto;
@@ -490,7 +495,6 @@ height: 370px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
-background-color:  #262936 !important;
 }
 
 .social_icon span{
