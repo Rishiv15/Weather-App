@@ -8,6 +8,7 @@ var passport    =   require("passport");
 var LocalStrategy = require("passport-local");
 var User        =   require("./models/user");
 var tourism     =   require("./models/tourism")
+
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -65,11 +66,11 @@ we.save(function(err, weat){
 });*/
 
 app.get("/", function(req, res){
-    res.render("home");
+    res.render("about");
 });
 
 app.get("/home", function(req, res){
-    res.render("home");
+    res.render("about");
 });
 /*app.get("/home", function(req, res){
     var places=["Mumbai","New York","Paris","London","Tokyo"];
@@ -266,7 +267,7 @@ app.get("/comparison",function(req,res){
 // });
 
 var filter;
-app.get("/tourism", function(req, res){
+app.get("/tourism",isLoggedIn, function(req, res){
 
     tourism.find({}, function(err, tour){
         if(err){
@@ -800,14 +801,14 @@ app.get("/login", function(req, res){
 
 app.post("/login", passport.authenticate("local",
     {
-        successRedirect: "/index",
+        successRedirect: "/home",
         failureRedirect: "/login"
     }), function(req, res){
 })
 
 app.get("/logout", function(req, res){
     req.logout();
-    res.redirect("/index")
+    res.redirect("/home")
 })
 
 function isLoggedIn(req, res, next){
