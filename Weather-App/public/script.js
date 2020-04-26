@@ -64,7 +64,7 @@ else if(cond === "Clear")
     $(".gif").css("background-image", "url('https://i.gifer.com/JXjb.gif')");
 
 else 
-    $(".gif").css("background-image", "url('https://i.pinimg.com/originals/dc/fe/13/dcfe13ee2a8e781250651bacedcb1a85.gif')");
+    $(".gif").css("background-image", "url('https://i2.wp.com/css-tricks.com/wp-content/uploads/2012/10/animated-rain.gif')");
 
 function search_bar()
 {
