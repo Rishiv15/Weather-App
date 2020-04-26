@@ -383,7 +383,14 @@ app.get("/tourism/filtered_places", function(req, res){
         });
     }
     else{
-        res.send("Form submitted empty");
+        tourism.find({}, function(err, ret){
+            if(err){
+                console.log("error");
+            }
+            else{
+                res.render("filtered_places", {ret: ret});
+            }
+        });
     }
 });
 
