@@ -8,6 +8,9 @@ var passport    =   require("passport");
 var LocalStrategy = require("passport-local");
 var User        =   require("./models/user");
 var tourism     =   require("./models/tourism")
+var Post        =   require("./models/posts")
+
+
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -228,13 +231,18 @@ app.get("/comparison",function(req,res){
         }
         flag2 = 1;
 
-        dcity = [
-            dcity1= dcity1,
-            dcity2= dcity2
-        ]
-        console.log(dcity[0].sunset);
-        console.log(dcity[0].sunset);
-        res.render('comparison', dcity);
+        dcity = {
+            dcity1: dcity1,
+            dcity2: dcity2
+        };
+
+        if(isEmpty(dcity.dcity1) || isEmpty(dcity.dcity2))
+        {
+            location.reload();
+        }
+        console.log(dcity.dcity1.sunset);
+        console.log(dcity.dcity2.sunset);
+        res.render('comparison', {dcity:dcity});
 
     }
     else console.log("API 2 failed")
@@ -771,7 +779,84 @@ app.get("/country_map", function(req, res){
     res.render("country_map");
 });
 
+
+
+
+//-----------------Blog routes goes here-----------------------------------
+
+
+app.get("/create_post",isLoggedIn,function(req,res){
+
+//console.log(req.user._id);
+res.render("create_new_post");
+
+});
+
+app.post("/create_post",isLoggedIn,function(req,res){
+console.log(req.body);
+    var title = req.body.title;
+    var place = req.body.place;
+    var time = req.body.time;
+    var description = req.body.description;
+
+    var post={
+        title:title,
+        place:place,
+        time:time,
+        description:description
+    }
+    var user_id=req.user._id;
+    console.log(user_id);
+    User.findById(user_id,function(err,user){
+        if(err){
+        console.log(err);
+        res.redirect("/create_post");
+        }
+        else{
+            Post.create(post,function(err,post){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    user.posts.push(post);
+                    user.save();
+                    console.log(post);
+                    res.redirect("/about")
+                }
+            });
+        }
+    });
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = chart_temp;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //AUTH ROUTES
 

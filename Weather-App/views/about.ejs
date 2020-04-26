@@ -3,7 +3,7 @@
 		<main>
 			<div class="container">
 				<% if(currentUser) {%>
-					<h1>Welcome! You have signed in as <%= currentUser.username %></h1>
+					<h1>Welcome! You have signed in as <%= currentUser.username %>,<%= currentUser._id %></h1>
 					<% } %>
 				<div class="contact-details">
 					<div class="map">
