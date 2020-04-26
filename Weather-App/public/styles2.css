@@ -491,10 +491,10 @@ margin-bottom: 80px;
 }
 
 .card{
-height: 450px;
+height: 470px;
 margin-top: auto;
 margin-bottom: auto;
-width: 450px;
+width: 420px;
 background-color: rgba(0,0,0,0.5);
 }
 
@@ -530,18 +530,6 @@ input:focus{
 outline: 0 0 0 0  !important;
 box-shadow: 0 0 0 0 !important;
 
-}
-
-.remember{
-color: white;
-}
-
-.remember input
-{
-width: 20px;
-height: 20px;
-margin-left: 15px;
-margin-right: 5px;
 }
 
 .login_btn{

@@ -7,11 +7,11 @@ var mongoose    =   require("mongoose");
 var passport    =   require("passport");
 var LocalStrategy = require("passport-local");
 var User        =   require("./models/user");
-var tourism     =   require("./models/tourism")
-var Post        =   require("./models/posts")
+var tourism     =   require("./models/tourism");
+var Post        =   require("./models/posts");
+var seedDB      =   require("./seeds");
 
-
-
+seedDB();
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
