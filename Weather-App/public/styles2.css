@@ -491,16 +491,17 @@ margin-bottom: 80px;
 }
 
 .card{
-height: 370px;
+height: 450px;
 margin-top: auto;
 margin-bottom: auto;
-width: 400px;
+width: 450px;
+background-color: rgba(0,0,0,0.5);
 }
 
 .social_icon span{
 font-size: 60px;
 margin-left: 10px;
-color: white;
+color: #262936;
 }
 
 .social_icon span:hover{
@@ -561,3 +562,4 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+

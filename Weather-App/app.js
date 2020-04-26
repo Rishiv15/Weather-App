@@ -69,11 +69,11 @@ we.save(function(err, weat){
 });*/
 
 app.get("/", function(req, res){
-    res.render("about");
+    res.render("home");
 });
 
 app.get("/home", function(req, res){
-    res.render("about");
+    res.render("home");
 });
 /*app.get("/home", function(req, res){
     var places=["Mumbai","New York","Paris","London","Tokyo"];
@@ -236,7 +236,7 @@ app.get("/comparison",function(req,res){
             dcity2: dcity2
         };
 
-        if(isEmpty(dcity.dcity1) || isEmpty(dcity.dcity2))
+        if(!dcity.dcity1 && !dcity.dcity2)
         {
             location.reload();
         }
@@ -835,6 +835,24 @@ console.log(req.body);
     });
 
 });
+
+app.get("/tourism_home",isLoggedIn,function(req,res){
+
+     Post.find(function(err,posts){
+        posts.forEach(function(posts){console.log(posts.place);})   
+     });
+        
+    res.render("tourism_home");
+})
+
+
+app.get("/your_blog",isLoggedIn,function(req,res){
+    var user_id = req.user._id;
+
+    User.findById( user_id,function(err,user){
+        user.posts.forEach(function(posts){console.log(posts.place);})   
+    })
+})
 
 
 
