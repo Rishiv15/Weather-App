@@ -1,13 +1,19 @@
 <%- include ('./partials/header') %>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
 
+   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
     <div class="container">
         <div class="row mb-5 mt-5">
-            <div class="col-6 text-center"><a class="active" href="/country_map">Country Maps</a></div>
+            <div class="col-6 text-center"><a class="active" href="/country_map">World Map</a></div>
             <div class="col-6 text-center"><a href="/climate_map">Climate Maps</a></div>
         </div>
     </div>
 
-    <div class="container ml-0">
+    <!--<div class="container ml-0">
         <img src="https://images-na.ssl-images-amazon.com/images/I/71RgfIeTq6L._SL1148_.jpg" usemap="#Indiamap">
         <map name="Indiamap">
             <area target="_parent" alt="maha" title="maha" href="https://images-na.ssl-images-amazon.com/images/I/71RgfIeTq6L._SL1148_.jpg" coords="220,575,213,587,205,600,208,609,208,622,192,631,170,630,174,735,200,828,207,780,218,761,238,754,252,757,272,737,317,706,333,676,356,655,372,668,385,666,400,669,421,670,415,649,422,633,423,610,315,600,272,595,238,594,288,603,238,595,230,583" shape="poly">
@@ -21,6 +27,23 @@
             <area target="_blank" alt="egypt" title="egypt" href="https://vignette.wikia.nocookie.net/thefutureofeuropes/images/2/2f/AWOWA.png/revision/latest?cb=20160509022813" coords="1030,135,1036,335,1220,330,1247,307,1157,136,1209,206,1149,136,1107,144,1202,138,1147,135" shape="poly">
             <area target="_parent" alt="namibia" title="namibia" href="https://vignette.wikia.nocookie.net/thefutureofeuropes/images/2/2f/AWOWA.png/revision/latest?cb=20160509022813" coords="958,1191,929,1410,864,1399,774,1179,868,1180,917,1177,941,1188,943,1194,951,1194" shape="poly">
         </map>
-    </div>
+    </div>-->
+    <style>  #map { height:800px ; width:1800px;align-content: center;}</style>
+    <div id="map"></div>
 
+
+    <script>
+        var mymap = L.map('map').setView([31.505, -0.09], 3);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2lkZGhhcnRoNTk1IiwiYSI6ImNrOWlqb25wNjAzc3gzZm81bndxZzJuMjEifQ.XO3epi_z2o9Jp20ZNxBZEQ', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 15,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'your.mapbox.access.token'
+}).addTo(mymap);
+
+        
+
+    </script>
 <%- include ('./partials/footer') %>

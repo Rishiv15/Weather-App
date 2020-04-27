@@ -843,30 +843,39 @@ console.log(req.body);
 
 app.get("/tourism_home",isLoggedIn,function(req,res){
 
-     Post.find(function(err,posts){
-         console.log(posts);
-        res.render("tourism_home",{posts:posts});   
-     });
+     /*Post.find( function(err,posts){
+        console.log(posts);
+        //res.render("tourism_home",{posts:posts}); 
+        res.send(posts);  
+     });*/
+     Post.find({}, function(err, users) {
+        var userMap = {};
+    
         
-    console.log(posts);
+    console.log(typeof(users));
+        res.render("tourism_home",{posts:users});  
+      });
+    
+
+  //  var posts =  Post.find();
+   // console.log(posts);
+    
 });
 
 
 app.get("/your_blog",isLoggedIn,function(req,res){
     var user_id = req.user._id;
+    var allposts = [];
+  
 
-    User.findById( user_id,function(err,user){
-        let allposts = [];
-        user.posts.forEach(function(posts){
-            Post.findById(posts,function(err,post){
-                    allposts.push(post);
-                    
-                    console.log(post);
-            });
-        });
-        console.log(allposts); 
-          
-    });
+   User.findById(user_id).populate("posts").exec(function(err,foundPost){
+       if(err)console.log(err);
+
+       else{
+           console.log(foundPost);
+           res.render("your_blog",{posts:foundPost.posts});
+       }
+   });
 })
 
 
