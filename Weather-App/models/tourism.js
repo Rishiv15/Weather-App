@@ -42,4 +42,5 @@ tourism.create(
         }
 }); */
 
+
 module.exports = tourism;

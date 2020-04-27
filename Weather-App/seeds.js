@@ -19,10 +19,30 @@ var data = [
         image: "https://static.toiimg.com/photo/65666850/redfort1.jpg?width=748&resize=4",
         rain: 85,
         season: "Winter"
+    },
+    {
+        
+        place: "Paris",
+        temp: 19,
+        humidity: 75,
+        landform: "Hilly",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTYD0VaUZW3HhbdEYWmzHyACxa_AKLnzCA7_HDS5R0WFvOeSqUH&usqp=CAU",
+        rain: 67,
+        season: "Winter"
+    },
+    {  
+        place: "London",
+        temp: 13,
+        humidity: 60,
+        landform: "Hilly",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTYD0VaUZW3HhbdEYWmzHyACxa_AKLnzCA7_HDS5R0WFvOeSqUH&usqp=CAU",
+        rain: 87,
+        season: "Winter"
     }
-]
+];
+
 function seedDB(){
-    tourism.remove({}, function(err){
+    tourism.deleteMany({}, function(err){
         if(err){
             console.log(err);
         }
