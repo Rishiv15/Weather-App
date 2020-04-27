@@ -25,21 +25,35 @@ var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(scr
   <body>
     <div class="container">
 
-      <div class="row">
+      <% if(currentUser){ %>
+        <h1>Welcome, you have signed in as <%= currentUser.username %></h1>
+      <% } %>
+
+      <div class="row mb-5">
         <div class="col-md-6">
           <div id="openweathermap-widget-5" style="margin-left: 0px; display: inline;"></div>
         </div>
-        <div class="col-md-6" style="background-color: orange; opacity: 0.5;">
-          <ul class="text-center" style="display: inline; text-decoration: solid; color: black;">
-            <li class="mb-3">This website displays the current weather of any city the user wishes to see.</li>
-            <li class="mb-3">The weather forecast of the next 5 days of any city in the world can also be viewed.</li>
-            <li class="mb-3">Tourist Destinations can be suggested to users based on their preferred weather.</li>
-            <li class="mb-3">Users can descibe their experience on our blogpost portal which can give helpful insights to other people regarding their next destination.</li>
-          </ul>
+        <div class="col-md-6">
+          <div id="widgetparis"></div>
         </div>
       </div>
 
-      <div c><>
+      <div class="row">
+        <div class="col-md-6">
+          <div id="widgetldn"></div>
+        </div>
+        
+          <div class="col-md-6" style="background-color: orange; opacity: 0.5;">
+            <ul class="text-center" style="display: inline; text-decoration: solid; color: black;">
+              <li class="mb-3">This website displays the current weather of any city the user wishes to see.</li>
+              <li class="mb-3">The weather forecast of the next 5 days of any city in the world can also be viewed.</li>
+              <li class="mb-3">Tourist Destinations can be suggested to users based on their preferred weather.</li>
+              <li class="mb-3">Users can descibe their experience on our blogpost portal which can give helpful insights to other people regarding their next destination.</li>
+            </ul>
+          </div>
+          
+      
+      </div>
       
     </div>
 </div>
@@ -50,7 +64,7 @@ var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(scr
     Weather forecaster and Travel Advisor
     </title>
   </head>
-<div id="widgetldn"></div>
+
 <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  
 window.myWidgetParam.push({id: 5,cityid: '2643743',appid: 'd9543518fdf80937c47abc9d15ee0e52',units: 'metric',containerid: 'widgetldn',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
 var s = document.getElementsByTagName('script')[0];
@@ -58,13 +72,13 @@ s.parentNode.insertBefore(script, s);  })();
 </script>
 
 
-<div id="widgetparis"></div>
+
 <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 5,cityid: '2988507',appid: 'd9543518fdf80937c47abc9d15ee0e52',units: 'metric',containerid: 'widgetparis',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
 var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();
 </script>
 
 
-<div id="widgetny"></div>
+
 <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 5,cityid: '5128581',appid: 'd9543518fdf80937c47abc9d15ee0e52',units: 'metric',containerid: 'widgetny',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
 var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();
 </script>
@@ -72,11 +86,8 @@ var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(scr
   
   
   <body>
-    <p>
-     <h3>
-      About Us:
-    </h3>
-   This website has been designed by web developers from VJTI, Mumbai.....  
+    
+     
     
     
   </body>
