@@ -16,11 +16,6 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
-// const { JSDOM } = jsdom;
-// const { window } = new JSDOM();
-// const { document } = (new JSDOM('')).window;
-// global.document = document;
-// var $ = require('jQuery')(window);
 
 mongoose.connect("mongodb://localhost:27017/weather", {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -44,8 +39,6 @@ var weatSchema = new mongoose.Schema({
 });
 
 var weather = mongoose.model("weather", weatSchema);
-// if(weather) console.log("DB working");
-// else console.log("DB not");
 
 // weather.create({
 //     temp: 34,
@@ -56,18 +49,6 @@ var weather = mongoose.model("weather", weatSchema);
 // });
 
 
-/*var we = new weather ({
-    temp: 34,
-    humidity: 56
-});
-
-we.save(function(err, weat){
-    if(err)
-        console.log("Error in saving to db: "+err);
-    else
-        console.log(weat);
-});*/
-
 app.get("/", function(req, res){
     res.render("home");
 });
@@ -75,20 +56,7 @@ app.get("/", function(req, res){
 app.get("/home", function(req, res){
     res.render("home");
 });
-/*app.get("/home", function(req, res){
-    var places=["Mumbai","New York","Paris","London","Tokyo"];
-    var data =[];
 
-    for(var j=0;j<4;j++)
-    {
-    var url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + place + '&appid=8e92bda0f95b3b0228d1a57fcc94c9ea&units=metric';
-
-    request(url,function(error,response,body){
-
-    });
-}
-    res.render("home");
-});*/ 
 
 app.get("/compare_form",function(req,res){
     res.render("compare_form");
@@ -137,9 +105,9 @@ app.get("/comparison",function(req,res){
         var wind_deg = data.wind.deg;
 
         date = new Date(sunrise * 1000); 
-        //console.log("New date: " + date);
+
         utcString = date.toUTCString(); 
-       // console.log("utc string: " + utcString);
+       
         sunrise = utcString.slice(-11, -4);
         
         dateObj = new Date(sunset * 1000); 
@@ -200,9 +168,9 @@ app.get("/comparison",function(req,res){
         var wind_deg = data.wind.deg;
 
         date = new Date(sunrise * 1000); 
-        //console.log("New date: " + date);
+        
         utcString = date.toUTCString(); 
-       // console.log("utc string: " + utcString);
+
         sunrise = utcString.slice(-11, -4);
         
         dateObj = new Date(sunset * 1000); 
@@ -260,18 +228,6 @@ app.get("/comparison",function(req,res){
 */
  });
 
-// tourism.create(
-//     {
-//         place: "Honolulu",
-//         distance: 140,
-//         temp: 45,
-//         humidity: 56,
-//         landform: "sm"
-//     }, function(err, place){
-//         if(err){
-//             console.log("Error creating place");
-//         }
-// });
 
 var filter;
 app.get("/tourism",isLoggedIn, function(req, res){
@@ -726,17 +682,7 @@ app.get("/climate_map/pressure_map", function(req, res){
     });
 });
 
-/*Plan: Free
-500 calls/day
-500 historical calls/day (trial)
-1 month historical
-16 day forecasts
-48 hour forecasts (trial)
-Air Quality / Energy API (trial)
-Non-Commercial use only
-95.0% Uptime
-Data update delay: 1 hour
-Price: Free*/
+
 
 app.get("/climate_map/rain_map", function(req, res){
     res.render("rain_map");
@@ -770,9 +716,6 @@ app.get("/climate_map/temp_map", function(req, res){
     });
 });
 
-/*export function pass_cond(cond){
-    return cond;
-}*/
 
 app.get("/climate_map/wind_map", function(req, res){
     res.render("wind_map");
@@ -794,7 +737,7 @@ app.get("/country_map", function(req, res){
 
 app.get("/create_post",isLoggedIn,function(req,res){
 
-//console.log(req.user._id);
+
 res.render("create_new_post");
 
 });
@@ -851,14 +794,9 @@ app.get("/tourism_home",isLoggedIn,function(req,res){
      Post.find({}, function(err, users) {
         var userMap = {};
     
-        
-    console.log(typeof(users));
         res.render("tourism_home",{posts:users});  
       });
     
-
-  //  var posts =  Post.find();
-   // console.log(posts);
     
 });
 
@@ -881,29 +819,7 @@ app.get("/your_blog",isLoggedIn,function(req,res){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 module.exports = chart_temp;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -922,7 +838,7 @@ app.post("/register", function(req, res){
         }
         passport.authenticate("local")(req, res, function(){
             //message = "Registered";
-            res.redirect("/index");
+            res.redirect("/home");
         });
     });
 });

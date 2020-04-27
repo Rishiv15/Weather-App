@@ -1,5 +1,14 @@
 <%- include ('./partials/header.ejs') %>
 
+<style>
+  body {
+    
+    background: url("https://u01.appmifile.com/images/2016/11/29/d44857ce-d2ab-4055-89bb-4ccaaa8f91d2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+  }
+</style>
 
 <main>
     <div class="container">
@@ -13,8 +22,7 @@
     </title>
   </head>
 
-<div id="openweathermap-widget-5" style="margin-left: 500px;">
-</div>
+
 <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
   window.myWidgetParam.push({id: 5,cityid: '1275339',appid: 'd9543518fdf80937c47abc9d15ee0e52',units: 'metric',containerid: 'openweathermap-widget-5',  });
   (function() {var script = document.createElement('script');
@@ -25,16 +33,24 @@ var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(scr
    
   
   <body>
-      <ul>
-        <li>This website displays the current weather of any city the user wishes to see.</li>
-        <li>This website displays the current weather of any city the user wishes to see.</li>
-      </ul>
-     <h3>
-      About Us:
-    </h3>
+    <div class="container">
 
-   This website has been designed by web developers from VJTI, Mumbai.....  
-    
+      <div class="row">
+        <div class="col-md-6">
+          <div id="openweathermap-widget-5" style="margin-left: 0px; display: inline;"></div>
+        </div>
+        <div class="col-md-6" style="background-color: orange; opacity: 0.5;">
+          <ul class="text-center" style="display: inline; text-decoration: solid; color: black;">
+            <li class="mb-3">This website displays the current weather of any city the user wishes to see.</li>
+            <li class="mb-3">The weather forecast of the next 5 days of any city in the world can also be viewed.</li>
+            <li class="mb-3">Tourist Destinations can be suggested to users based on their preferred weather.</li>
+            <li class="mb-3">Users can descibe their experience on our blogpost portal which can give helpful insights to other people regarding their next destination.</li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+      
     
   </body>
   
