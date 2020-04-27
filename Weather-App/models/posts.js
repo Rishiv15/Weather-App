@@ -6,6 +6,8 @@ var postSchema = mongoose.Schema({
     place: String,
     time : String,
     description: String,
+    image:String,
+    author:String,
     created: {type:Date,default:Date.now}
 })
 

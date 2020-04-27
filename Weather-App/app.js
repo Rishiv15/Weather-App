@@ -804,13 +804,18 @@ console.log(req.body);
     var title = req.body.title;
     var place = req.body.place;
     var time = req.body.time;
+    var author = req.body.author;
+    var image = req.body.image;
     var description = req.body.description;
 
     var post={
         title:title,
         place:place,
         time:time,
-        description:description
+        description:description,
+        image:image,
+        author:author,
+
     }
     var user_id=req.user._id;
     console.log(user_id);
@@ -828,7 +833,7 @@ console.log(req.body);
                     user.posts.push(post);
                     user.save();
                     console.log(post);
-                    res.redirect("/about")
+                    res.redirect("/tourism_home")
                 }
             });
         }
@@ -839,19 +844,29 @@ console.log(req.body);
 app.get("/tourism_home",isLoggedIn,function(req,res){
 
      Post.find(function(err,posts){
-        posts.forEach(function(posts){console.log(posts.place);})   
+         console.log(posts);
+        res.render("tourism_home",{posts:posts});   
      });
         
-    res.render("tourism_home");
-})
+    console.log(posts);
+});
 
 
 app.get("/your_blog",isLoggedIn,function(req,res){
     var user_id = req.user._id;
 
     User.findById( user_id,function(err,user){
-        user.posts.forEach(function(posts){console.log(posts.place);})   
-    })
+        let allposts = [];
+        user.posts.forEach(function(posts){
+            Post.findById(posts,function(err,post){
+                    allposts.push(post);
+                    
+                    console.log(post);
+            });
+        });
+        console.log(allposts); 
+          
+    });
 })
 
 
