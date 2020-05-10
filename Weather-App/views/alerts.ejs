@@ -4,7 +4,7 @@
     <% if(alerts[0]){ %>
         <% for(var i=0; i<alerts.length; i++){ %>
             <% if(alerts[i].severity === "Warning"){ %>
-                <div class="card text-white bg-danger mb-3" style="width: 70rem;">
+                <div class="card text-white bg-danger mb-4" style="width: 70rem;">
                     <div class="card-header"><%= alerts[i].severity %></div>
                     <div class="card-body">
                         <h5 class="card-title"><%= alerts[i].title %></h5>
@@ -14,12 +14,12 @@
                                 <li class=card-text><%= alerts[i].regions[j] %></li>
                             <% } %>
                         </ul>
-                        <a href="https://edition.cnn.com/weather" class="btn btn-primary" style="float: right;">See the full article</a>
+                        <a href="https://edition.cnn.com/weather" class="btn btn-primary k" style="float: right;">See the full article</a>
                     </div>
                 </div>
             <% } %>
             <% if(alerts[i].severity === "Watch"){ %>
-                <div class="card text-white bg-warning mb-3" style="width: 70rem;">
+                <div class="card text-white bg-warning mb-4" style="width: 70rem;">
                     <div class="card-header"><%= alerts[i].severity %></div>
                     <div class="card-body">
                         <h5 class="card-title"><%= alerts[i].title %></h5>
@@ -29,12 +29,12 @@
                                 <li class=card-text><%= alerts[i].regions[j] %></li>
                             <% } %>
                         </ul>
-                        <a href="https://edition.cnn.com/weather" class="btn btn-primary">See the full article</a>
+                        <a href="https://edition.cnn.com/weather" class="btn btn-primary k">See the full article</a>
                     </div>
                 </div>
             <% } %>
             <% if(alerts[i].severity === "Advisory"){ %>
-                <div class="card text-white bg-secondary mb-3" style="width: 70rem;">
+                <div class="card text-white bg-secondary mb-4" style="width: 70rem;">
                     <div class="card-header"><%= alerts[i].severity %></div>
                     <div class="card-body">
                         <h5 class="card-title"><%= alerts[i].title %></h5>
@@ -44,7 +44,7 @@
                                 <li class=card-text><%= alerts[i].regions[j] %></li>
                             <% } %>
                         </ul>
-                        <a href="https://edition.cnn.com/weather" class="btn btn-primary">See the full article</a>
+                        <a href="https://edition.cnn.com/weather" class="btn btn-primary k">See the full article</a>
                     </div>
                 </div>
             <% } %>
