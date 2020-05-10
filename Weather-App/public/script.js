@@ -48,7 +48,7 @@ $( '.title.ml-5 .nav.justify-content-around.flex-column.flex-sm-row li.nav-item 
 var cond = $("p.gif_cond").text();
 console.log(cond);
 
-if(cond === "Thunderstorm" || cond === "Drizzle" || cond ==="Rain")
+if(cond === "Thunderstorm" || cond === "Drizzle" || cond ==="Rain" || cond === "Tornado")
     $(".gif").css("background-image", "url('https://i2.wp.com/css-tricks.com/wp-content/uploads/2012/10/animated-rain.gif')");
 
 else if(cond === "Snow")
@@ -63,8 +63,10 @@ else if(cond === "Clouds")
 else if(cond === "Clear")
     $(".gif").css("background-image", "url('https://i.gifer.com/JXjb.gif')");
 
-else 
+else if(cond === "Mist" || cond === "Haze" || cond === "Dust" || cond === "Fog" || cond === "Sand" || cond === "Ash" || cond === "Squall")
     $(".gif").css("background-image", "url('https://i.pinimg.com/originals/dc/fe/13/dcfe13ee2a8e781250651bacedcb1a85.gif ')");
+else 
+    $(".gif").css("background-image", "url('https://thumbs.gfycat.com/MeekWillingGaur-max-1mb.gif')");
 
 
 function search_bar()
