@@ -1,0 +1,32 @@
+<%- include ('./partials/header2') %>
+
+    <div class="container">
+        <div class="card text-white bg-primary mt-4 adjust" style="margin: auto;">
+            <img class="card-img-top card-image" src="<%= tour.image %>" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><%= tour.place %></h5>
+                <div class="row mt-4 mb-3">
+                    <div class="col-6">
+                        <p class="card-text"><i class="fas fa-temperature-high mr-2"></i>Temp: <%= tour.temp %><sup>o</sup>C</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="card-text"><i class="fas fa-tint mr-2"></i>Humidity: <%= tour.humidity %>%</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text"><i class="fas fa-umbrella mr-2"></i>Rainfall: <%= tour.rain %></p>
+                    </div>
+                    <div class="col-6">
+                        <p class="card-text"><i class="fas fa-mountain mr-2"></i>Landform: <%= tour.landform %></p>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="card-footer text-white">
+                <small>Best Season to visit: <%= tour.season %></small>
+            </div>
+        </div>
+    </div>
+    
+<%- include ('./partials/footer') %>
