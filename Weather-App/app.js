@@ -660,7 +660,7 @@ app.get("/climate_map/pressure_map", function(req, res){
         console.log("Error: "+error);
         console.log("SC: "+response.statusCode);
         if(!error && response.statusCode == 200){
-            console.log(body);
+            //console.log(body);
 
             var map;
             function initMap() {
@@ -673,7 +673,7 @@ app.get("/climate_map/pressure_map", function(req, res){
                 body: body,
                 map:map
             };
-            console.log("Working");
+            //console.log("Working");
             res.render("pressure_map", obj);
         }
         else{
@@ -692,8 +692,8 @@ app.get("/climate_map/temp_map", function(req, res){
 
     var url = "https://tile.openweathermap.org/map/temp_new/100/3/2.png?appid=48164502b664fb28643399e9f69d1016";
     request(url, function(error, response, body){
-        console.log("Error: "+error);
-        console.log("SC: "+response.statusCode);
+        // console.log("Error: "+error);
+        // console.log("SC: "+response.statusCode);
         if(!error && response.statusCode == 200){
 
             var map;
@@ -743,7 +743,7 @@ res.render("create_new_post");
 });
 
 app.post("/create_post",isLoggedIn,function(req,res){
-console.log(req.body);
+
     var title = req.body.title;
     var place = req.body.place;
     var time = req.body.time;
@@ -761,7 +761,6 @@ console.log(req.body);
 
     }
     var user_id=req.user._id;
-    console.log(user_id);
     User.findById(user_id,function(err,user){
         if(err){
         console.log(err);
@@ -775,7 +774,6 @@ console.log(req.body);
                 else{
                     user.posts.push(post);
                     user.save();
-                    console.log(post);
                     res.redirect("/tourism_home")
                 }
             });
