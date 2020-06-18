@@ -16,8 +16,13 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
+const dbConnect = async () => {
+    await mongoose.connect("mongodb+srv://Rishiv:r@chhabria17@weather-ji51z.mongodb.net/Weather?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+    //await mongoose.connect("mongodb://localhost:27017/weather", {useNewUrlParser: true, useUnifiedTopology: true});
+    console.log("db connected");
+};
 
-mongoose.connect("mongodb://localhost:27017/weather", {useNewUrlParser: true, useUnifiedTopology: true});
+dbConnect();
 
 app.use(require("express-session")({
     secret : "weather app",
@@ -869,6 +874,7 @@ app.get("*", function(req, res){
     res.send("Page not found");
 });
 
-app.listen(3000, function(){
-    console.log("Server running on port 3000");
+var port = process.env.PORT || 3000;
+app.listen(port, function(){
+    console.log("Server running on port", port);
 });
