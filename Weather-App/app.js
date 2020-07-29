@@ -15,10 +15,14 @@ seedDB();
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-
+// console.log("dburl: ");
+// console.log(process.env.DATABASEURL);
 const dbConnect = async () => {
-    await mongoose.connect("mongodb+srv://Rishiv:r@chhabria17@weather-ji51z.mongodb.net/Weather?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
-    //await mongoose.connect("mongodb://localhost:27017/weather", {useNewUrlParser: true, useUnifiedTopology: true});
+    var dataurl = process.env.DATABASEURL || "mongodb://localhost:27017/weather";
+    console.log("dataurl: ", dataurl);
+    //await mongoose.connect("mongodb+srv://Rishiv:r%40chhabria17@weather-ji51z.mongodb.net/Weather?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+    await mongoose.connect(dataurl, {useNewUrlParser: true, useUnifiedTopology: true});
+    //await mongoose.connect(process.env.DATABASEURL);
     console.log("db connected");
 };
 
@@ -813,7 +817,7 @@ app.get("/your_blog",isLoggedIn,function(req,res){
        if(err)console.log(err);
 
        else{
-           console.log(foundPost);
+           //console.log(foundPost);
            res.render("your_blog",{posts:foundPost.posts});
        }
    });
