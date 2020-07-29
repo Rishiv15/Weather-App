@@ -18,9 +18,10 @@ app.set("view engine", "ejs");
 // console.log("dburl: ");
 // console.log(process.env.DATABASEURL);
 const dbConnect = async () => {
-    //var dataurl = process.env.DATABASEURL || "mongodb://localhost:27017/weather";
-    //console.log("dataurl: ", dataurl);
-    await mongoose.connect("mongodb+srv://Rishiv:r%40chhabria17@weather-ji51z.mongodb.net/Weather?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+    var dataurl = process.env.DATABASEURL || "mongodb://localhost:27017/weather";
+    console.log("dataurl: ", dataurl);
+    //await mongoose.connect("mongodb://localhost:27017/weather");
+    await mongoose.connect("mongodb+srv://Rishiv:rishiv@weather-ji51z.mongodb.net/Weather?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
     //await mongoose.connect(dataurl, {useNewUrlParser: true, useUnifiedTopology: true});
     //await mongoose.connect(process.env.DATABASEURL);
     console.log("db connected");
