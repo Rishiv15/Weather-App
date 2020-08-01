@@ -597,17 +597,17 @@ app.get("/day_weather", function(req, res){
             console.log("Error");
         }
 
-        var uv;
-        request(uv_url, function(error, response, body){
-            if(!error && response.statusCode == 200){
-                var uv_data = JSON.parse(body);
-                uv = uv_data.value;
-                obj.uv = uv;
-            }
-            else {
-                console.log("UV API error");
-            }
-        });
+        // var uv;
+        // request(uv_url, function(error, response, body){
+        //     if(!error && response.statusCode == 200){
+        //         var uv_data = JSON.parse(body);
+        //         uv = uv_data.value;
+        //         obj.uv = uv;
+        //     }
+        //     else {
+        //         console.log("UV API error");
+        //     }
+        // });
         
 
         request(alerts_url, function(error, response, body){
