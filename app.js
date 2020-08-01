@@ -430,7 +430,12 @@ app.get("/index", function(req, res){
                 data.list[i].day = all_days[i];
                 data.list[i].icon_url = 'http://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png';
             }
-            
+            day1 = [];
+            day2 = [];
+            day3 = [];
+            day4 = [];
+            day5 = [];
+            day6 = [];
             for(var i=0; i<count_day1; i++){
                 day1[i] = data.list[i];
             }
