@@ -21,8 +21,8 @@ const dbConnect = async () => {
     var dataurl = process.env.DATABASEURL || "mongodb://localhost:27017/weather";
     console.log("dataurl: ", dataurl);
     //await mongoose.connect("mongodb://localhost:27017/weather");
-    await mongoose.connect("mongodb+srv://Rishiv:rishiv@weather-ji51z.mongodb.net/Weather?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
-    //await mongoose.connect(dataurl, {useNewUrlParser: true, useUnifiedTopology: true});
+    //await mongoose.connect("mongodb+srv://Rishiv:rishiv@weather-ji51z.mongodb.net/Weather?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+    await mongoose.connect(dataurl, {useNewUrlParser: true, useUnifiedTopology: true});
     //await mongoose.connect(process.env.DATABASEURL);
     console.log("db connected");
 };
@@ -597,17 +597,17 @@ app.get("/day_weather", function(req, res){
             console.log("Error");
         }
 
-        var uv;
-        request(uv_url, function(error, response, body){
-            if(!error && response.statusCode == 200){
-                var uv_data = JSON.parse(body);
-                uv = uv_data.value;
-                obj.uv = uv;
-            }
-            else {
-                console.log("UV API error");
-            }
-        });
+        // var uv;
+        // request(uv_url, function(error, response, body){
+        //     if(!error && response.statusCode == 200){
+        //         var uv_data = JSON.parse(body);
+        //         uv = uv_data.value;
+        //         obj.uv = uv;
+        //     }
+        //     else {
+        //         console.log("UV API error");
+        //     }
+        // });
         
 
         request(alerts_url, function(error, response, body){

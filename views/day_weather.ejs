@@ -159,8 +159,8 @@
                     </div>
                 </div>
 
-                <% if(uv){ %>
-                    <div class="forecast">
+                <% /* %>
+                    <div class="forecast"> 
                         <div class="forecast-header">
                             <div class="day">UV Index</div>
                         </div>
@@ -169,12 +169,14 @@
                                 <div class="forecast-icon">
                                     <img src="https://image.flaticon.com/icons/svg/1808/1808675.svg" class="uvIcon pt-1" alt="">
                                 </div>
-                                <div class="num pt-2"><%= uv %></div>
+                                <div class="num pt-2">
+                                    <% uv = uv || 4 %> 
+                                    <%= uv %> %>
+                                </div>
                             </div>
                         </div>
                     </div>
-                <% } %>
-
+                <% */ %>
             </div>
         </div>
     </div>
