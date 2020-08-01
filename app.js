@@ -649,7 +649,7 @@ app.get("/day_forecast/:day", function(req, res){
         else if(part_day === "day5")
             res.render("day_forecast", {day: day5, place: place});
         
-        res.render("day_forecast", {day: day6, place: place});
+        else res.render("day_forecast", {day: day6, place: place});
 });
 
 app.get("/alerts", function(req, res){
