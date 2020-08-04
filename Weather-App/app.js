@@ -220,7 +220,6 @@ app.get("/comparison",function(req,res){
             console.log('Api1 failed');
         }
     });
-    console.log(dcity1);
  });
 
 
