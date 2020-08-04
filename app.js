@@ -84,158 +84,143 @@ app.get("/comparison",function(req,res){
 
     console.log(city1);
     console.log(city2);
-   var url1  = 'http://api.openweathermap.org/data/2.5/weather?q=' + city1 + '&appid=48164502b664fb28643399e9f69d1016&units=metric';
-   var url2  = 'http://api.openweathermap.org/data/2.5/weather?q=' + city2 + '&appid=48164502b664fb28643399e9f69d1016&units=metric';
-   
-   var flag1=0,flag2=0;
-
-   var dcity1 = {};
-   var dcity2 = {};
+    var url1  = 'http://api.openweathermap.org/data/2.5/weather?q=' + city1 + '&appid=48164502b664fb28643399e9f69d1016&units=metric';
+    var url2  = 'http://api.openweathermap.org/data/2.5/weather?q=' + city2 + '&appid=48164502b664fb28643399e9f69d1016&units=metric';
     
-   request(url1,function(error,response,body){
-       console.log("Error: "+error);
-       console.log("SC: "+response.statusCode)
+    var flag1=0,flag2=0;
+
+    var dcity1 = {};
+    var dcity2 = {};
+
+    request(url1,function(error,response,body){
+        
         if(!error && response.statusCode == 200){
         
-        var data = JSON.parse(body);
-        
-        var pressure = data.main.pressure;
-        var humidity = data.main.humidity;
-        var wind_speed = data.wind.speed;
-        var temp = data["main"]["temp"];
-        var coord = data["coord"];
-        var icon = data["weather"][0]["icon"];
-        var cond = data["weather"][0]["main"];
-        var temp_feels = data.main.feels_like;
-        var temp_min = data.main.temp_min;
-        var temp_max = data.main.temp_max;
-        var clouds = data.clouds.all;
-        var sunrise = data.sys.sunrise + data.timezone;
-        var sunset = data.sys.sunset + data.timezone;
-        var wind_deg = data.wind.deg;
-
-        date = new Date(sunrise * 1000); 
-
-        utcString = date.toUTCString(); 
-       
-        sunrise = utcString.slice(-11, -4);
-        
-        dateObj = new Date(sunset * 1000); 
-        utcString = dateObj.toUTCString(); 
-        sunset = utcString.slice(-11, -4);
-        date = String(date);
-        date = date.slice(0, 15);
-
-        dcity1 = {
-            place: city1,
-            icon: icon,
-            cond: cond,
-            temp: temp,
-            temp_max: temp_max,
-            temp_min: temp_min,
-            temp_feels: temp_feels,
-            pressure: pressure,
-            humidity: humidity,
-            wind_speed: wind_speed,
-            clouds: clouds,
-            sunrise: sunrise,
-            sunset: sunset,
-            wind_deg: wind_deg,
-            coord: coord,
-            date: date
-        }
-        flag1 = 1;
-        
-        
-    }
-    else{
-        console.log('Api1 failed');
-    }
-
+            var data = JSON.parse(body);
+            
+            var pressure = data.main.pressure;
+            var humidity = data.main.humidity;
+            var wind_speed = data.wind.speed;
+            var temp = data["main"]["temp"];
+            var coord = data["coord"];
+            var icon = data["weather"][0]["icon"];
+            var cond = data["weather"][0]["main"];
+            var temp_feels = data.main.feels_like;
+            var temp_min = data.main.temp_min;
+            var temp_max = data.main.temp_max;
+            var clouds = data.clouds.all;
+            var sunrise = data.sys.sunrise + data.timezone;
+            var sunset = data.sys.sunset + data.timezone;
+            var wind_deg = data.wind.deg;
     
-   });
-  
-   console.log(dcity1);
-
-   request(url2, function(error,response,body){
-    if(!error && response.statusCode == 200){
-        
-        var data = JSON.parse(body);
-        
-        var pressure = data.main.pressure;
-        var humidity = data.main.humidity;
-        var wind_speed = data.wind.speed;
-        var temp = data["main"]["temp"];
-        var coord = data["coord"];
-        var icon = data["weather"][0]["icon"];
-        var cond = data["weather"][0]["main"];
-        var temp_feels = data.main.feels_like;
-        var temp_min = data.main.temp_min;
-        var temp_max = data.main.temp_max;
-        var clouds = data.clouds.all;
-        var sunrise = data.sys.sunrise + data.timezone;
-        var sunset = data.sys.sunset + data.timezone;
-        var wind_deg = data.wind.deg;
-
-        date = new Date(sunrise * 1000); 
-        
-        utcString = date.toUTCString(); 
-
-        sunrise = utcString.slice(-11, -4);
-        
-        dateObj = new Date(sunset * 1000); 
-        utcString = dateObj.toUTCString(); 
-        sunset = utcString.slice(-11, -4);
-        date = String(date);
-        date = date.slice(0, 15);
-
-        dcity2 = {
-            place: city2,
-            icon: icon,
-            cond: cond,
-            temp: temp,
-            temp_max: temp_max,
-            temp_min: temp_min,
-            temp_feels: temp_feels,
-            pressure: pressure,
-            humidity: humidity,
-            wind_speed: wind_speed,
-            clouds: clouds,
-            sunrise: sunrise,
-            sunset: sunset,
-            wind_deg: wind_deg,
-            coord: coord,
-            date: date
-        }
-        flag2 = 1;
-
-        dcity = {
-            dcity1: dcity1,
-            dcity2: dcity2
-        };
-
-        if(!dcity.dcity1 && !dcity.dcity2)
-        {
-            location.reload();
-        }
-        console.log(dcity.dcity1.sunset);
-        console.log(dcity.dcity2.sunset);
-        res.render('comparison', {dcity:dcity});
-
-    }
-    else console.log("API 2 failed")
+            date = new Date(sunrise * 1000); 
     
+            utcString = date.toUTCString(); 
+            
+            sunrise = utcString.slice(-11, -4);
+            
+            dateObj = new Date(sunset * 1000); 
+            utcString = dateObj.toUTCString(); 
+            sunset = utcString.slice(-11, -4);
+            date = String(date);
+            date = date.slice(0, 15);
+    
+            dcity1 = {
+                place: city1,
+                icon: icon,
+                cond: cond,
+                temp: temp,
+                temp_max: temp_max,
+                temp_min: temp_min,
+                temp_feels: temp_feels,
+                pressure: pressure,
+                humidity: humidity,
+                wind_speed: wind_speed,
+                clouds: clouds,
+                sunrise: sunrise,
+                sunset: sunset,
+                wind_deg: wind_deg,
+                coord: coord,
+                date: date
+            }
+            flag1 = 1;
 
-   });
-  
-/*
-   console.log(dcity1);
-   console.log("Hi");
-   console.log(dcity2);
-   console.log(flag1,flag2);
-   if(flag1 && flag2)
-        res.render('comparison')
-*/
+            request(url2, function(error,response,body){
+                // console.log("Error in api2: "+error);
+                // console.log("SC: "+response.statusCode)
+                if(!error && response.statusCode == 200){
+                    
+                    var data = JSON.parse(body);
+                    
+                    var pressure = data.main.pressure;
+                    var humidity = data.main.humidity;
+                    var wind_speed = data.wind.speed;
+                    var temp = data["main"]["temp"];
+                    var coord = data["coord"];
+                    var icon = data["weather"][0]["icon"];
+                    var cond = data["weather"][0]["main"];
+                    var temp_feels = data.main.feels_like;
+                    var temp_min = data.main.temp_min;
+                    var temp_max = data.main.temp_max;
+                    var clouds = data.clouds.all;
+                    var sunrise = data.sys.sunrise + data.timezone;
+                    var sunset = data.sys.sunset + data.timezone;
+                    var wind_deg = data.wind.deg;
+            
+                    date = new Date(sunrise * 1000); 
+                    
+                    utcString = date.toUTCString(); 
+            
+                    sunrise = utcString.slice(-11, -4);
+                    
+                    dateObj = new Date(sunset * 1000); 
+                    utcString = dateObj.toUTCString(); 
+                    sunset = utcString.slice(-11, -4);
+                    date = String(date);
+                    date = date.slice(0, 15);
+            
+                    dcity2 = {
+                        place: city2,
+                        icon: icon,
+                        cond: cond,
+                        temp: temp,
+                        temp_max: temp_max,
+                        temp_min: temp_min,
+                        temp_feels: temp_feels,
+                        pressure: pressure,
+                        humidity: humidity,
+                        wind_speed: wind_speed,
+                        clouds: clouds,
+                        sunrise: sunrise,
+                        sunset: sunset,
+                        wind_deg: wind_deg,
+                        coord: coord,
+                        date: date
+                    }
+                    flag2 = 1;
+            
+                    dcity = {
+                        dcity1: dcity1,
+                        dcity2: dcity2
+                    };
+            
+                    if(!dcity.dcity1 && !dcity.dcity2)
+                    {
+                        location.reload();
+                    }
+                    console.log(dcity.dcity1.sunset);
+                    console.log(dcity.dcity2.sunset);
+                    res.render('comparison', {dcity:dcity});
+            
+                }
+                else console.log("API 2 failed")
+            });
+        }
+        else{
+            console.log('Api1 failed');
+        }
+    });
+    console.log(dcity1);
  });
 
 
