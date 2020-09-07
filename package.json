@@ -4,6 +4,7 @@
   "description": "Express install",
   "main": "app.js",
   "dependencies": {
+    "bl": "^4.0.3",
     "body-parser": "^1.19.0",
     "curl": "^0.1.4",
     "ejs": "^3.0.1",
