@@ -492,6 +492,8 @@ app.get("/index", function(req, res){
 
         var alerts_url = "https://api.weatherbit.io/v2.0/alerts?lat=" + lat + "&lon=" + lon + "&key=ef82eaf62ed2480a8250b65fa165efd5";
         request(alerts_url, function(error, response, body){
+            console.log(error);
+            console.log(response.statusCode);
             if(!error && response.statusCode == 200){
                 alerts_data = JSON.parse(body);
                 alerts_list = [];
