@@ -2,6 +2,9 @@
   "name": "node",
   "version": "1.0.0",
   "description": "Express install",
+  "engines": {
+    "node": "16.x"
+  },
   "main": "app.js",
   "dependencies": {
     "bl": "^4.0.3",
